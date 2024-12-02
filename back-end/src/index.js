@@ -4,6 +4,11 @@ import app from "./app.js";
 
 dotenv.config();
 
+app.get("/get", (req, res) => {
+  res.send("Success");
+});
+
+
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
