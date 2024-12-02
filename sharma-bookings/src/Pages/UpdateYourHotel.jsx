@@ -171,7 +171,7 @@ const UpdateYourHotel = () => {
               <input name="country" id="country" value={data.country} placeholder="country"  type="text" className="border p-2 rounded-lg w-full" onChange={inputChangeHandler} /> 
             </div>
             <div className="flex flex-col gap-1">
-              <p className="ml-2 font-semibold text-xl">STATE{" "}<span className="font-semibold text-gray-400 text-[15px]">(OPTIONAL)</span></p>
+              <p className="ml-2 font-semibold text-xl">STATE</p>
               <input name="state" id="state" value={data.state} placeholder="state" type="text" className="border p-2 rounded-lg w-full" onChange={inputChangeHandler} />
             </div>
             <div className="flex flex-col gap-1">

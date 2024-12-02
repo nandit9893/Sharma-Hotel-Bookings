@@ -243,7 +243,7 @@ const AddYourHotel = () => {
               <input name="country" id="country" value={data.country} placeholder="country" required type="text" className="border p-2 rounded-lg w-full" onChange={inputChangeHandler} />
             </div>
             <div className="flex flex-col gap-1">
-              <p className="ml-2 font-semibold text-xl">STATE{" "}<span className="font-semibold text-gray-400">(OPTIONAL)</span></p>
+              <p className="ml-2 font-semibold text-xl">STATE</p>
               <input name="state" id="state" value={data.state} placeholder="state" type="text" className="border p-2 rounded-lg w-full" onChange={inputChangeHandler} />
             </div>
             <div className="flex flex-col gap-1">

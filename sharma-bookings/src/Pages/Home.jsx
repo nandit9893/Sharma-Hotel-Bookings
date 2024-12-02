@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import header from "../assets/header.jpg";
 import sleep from "../assets/sleep.webp";
 import world_map from "../assets/world_map.jpg";
+import logo from "../assets/logo.png";
 import URL from "../assets/URL.js";
 import { MdLocationOn } from "react-icons/md"
 import { FaCalendarAlt } from "react-icons/fa";
@@ -227,18 +228,18 @@ const Home = () => {
       <div className="my-5 flex p-4 bg-gray-200">
         <div className="relative">
           <img src={world_map} alt="" className="w-full mix-blend-color-burn" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-24 right-20`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-40`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-28`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-44 right-20`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-20 left-20`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-10 left-40`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-40`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-60`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-96`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-60 left-96`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-72 left-96`} alt="" />
-          <img src={header} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-72 right-24`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-24 right-20`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-40`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-28`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-44 right-20`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-20 left-20`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-10 left-40`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-40`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-60`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-60 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-72 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-72 right-24`} alt="" />
         </div>
         <div className="p-10 gap-10">
           <h1 className="text-3xl font-semibold">There's an SHARMA RESIDENT STAY'S around. Always.</h1>
