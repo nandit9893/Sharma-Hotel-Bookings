@@ -57,7 +57,7 @@ const Navbar = () => {
             ( currentUser.role === "hotel-owner" ? 
               ( <Link to="/hotel-details"><FaHotel className="w-8 h-8 rounded-full object-cover text-white" alt="" /></Link> )
               :
-              ( <div onClick={()=>navigate("/profile")}><img src={currentUser.profileImage} className="w-8 h-8 rounded-full object-cover" alt="" /></div> )
+              ( <img src={currentUser.profileImage} className="w-8 h-8 rounded-full object-cover" alt="" onClick={()=>navigate("/profile")} /> )
             )
             :
             (
