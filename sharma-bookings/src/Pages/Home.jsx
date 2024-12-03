@@ -126,16 +126,16 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-14 relative">
-      <div className="flex flex-col w-full h-72" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}>
-        <div className="mx-auto my-10 bg-gray-600 p-4 rounded-md"  style={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.3)" }}>
-          <p className="text-white text-3xl font-bold">Over 174,000+ hotels and homes across 35+ countries</p>
+      <div className="flex flex-col w-full sm:h-72 h-[350px]" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}>
+        <div className="mx-auto my-10 bg-gray-600 sm:p-4 p-3 rounded-md w-72 sm:w-auto"  style={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.3)" }}>
+          <p className="text-white text-lg font-bold sm:text-3xl">Over 174,000+ hotels and homes across 35+ countries</p>
         </div>
-        <div className="flex justify-center">
-          <div className={`flex justify-evenly gap-4 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 w-80`}>
+        <div className="flex flex-col lg:flex-row justify-center sm:flex-row items-center gap-1">
+          <div className={`flex justify-evenly rounded-md gap-4 p-4 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 w-80`}>
             <MdLocationOn className="text-2xl" />
             <input type="text" className="text-xl text-black outline-none bg-white"  placeholder="Search hotels, cities" name="searchTerm" value={searchTerm} onChange={inputChangeHandler}/>
           </div>
-          <div className="flex p-4 gap-5 justify-evenly bg-white items-center w-80 cursor-pointer" onClick={()=>setDisplayCalendar(true)}>
+          <div className="flex p-4 gap-5 rounded-md justify-evenly bg-white items-center w-80 cursor-pointer" onClick={()=>setDisplayCalendar(true)}>
             <FaCalendarAlt className="text-2xl w-1/4" />
             <p className="text-xl font-semibold w-3/4">
               {
@@ -148,7 +148,7 @@ const Home = () => {
               }
             </p>
           </div>
-          <div className="flex p-4 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300">
+          <div className="flex p-4 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300 w-80 rounded-md">
             <button type="button" className="px-10 text-xl text-white font-semibold border-none outline-none" onClick={navigateToSearchPage}>Search</button>
           </div>
         </div>
@@ -158,7 +158,7 @@ const Home = () => {
         {
           placesPreview && allPlacesMergerd && allPlacesMergerd.length > 0 && 
           (
-            <div className="rounded-md absolute top-56 left-96 w-72 bg-white p-3 z-50 overflow-y-auto max-h-60">
+            <div className="rounded-md absolute top-56 left-14 lg:left-72 w-72 bg-white p-3 z-50 overflow-y-auto max-h-60">
               {
                 allPlacesMergerd.map((item, index) => (
                   <div key={index} className="flex gap-5 cursor-pointer p-1 items-center hover:bg-blue-600 hover:text-white text-black rounded-lg" onClick={()=>selectPlaces(item)}>
@@ -172,7 +172,7 @@ const Home = () => {
         }
         {
           displayCalendar && (
-            <Calender className="rounded-md absolute top-52 right-[500px] w-62 bg-white p-3 z-50"  onChange={(newDate)=>{setDate(newDate); setDisplayCalendar(false)}} value={date} />
+            <Calender className="rounded-md absolute top-52 left-4 lg:left-auto lg:right-[500px] w-20 lg:w-62 max-w-full bg-white p-3 z-50"    onChange={(newDate)=>{setDate(newDate); setDisplayCalendar(false)}} value={date} />
           )
         }
       </div>
@@ -185,7 +185,7 @@ const Home = () => {
               {
                 hotelImages && hotelImages.map((url) => (
                   <SwiperSlide key={url}>
-                    <div className="h-[550px]" style={{background: `url(${url}) center no-repeat`, backgroundSize: "cover", objectFit: "contain",}}></div>
+                    <div className="h-[250px] lg:h-[550px]" style={{background: `url(${url}) center no-repeat`, backgroundSize: "cover", objectFit: "contain",}}></div>
                   </SwiperSlide>
                 ))
               }
@@ -193,19 +193,19 @@ const Home = () => {
           </div>
         )
       }
-      <div className="my-2 flex justify-center p-10">
-        <div className="relative w-full px-10">
-          <img src={header} className="w-full h-[400px] rounded-lg brightness-50" alt="Header" />
-          <button className="absolute top-80 bg-white p-3 px-2 rounded-md w-52 left-32 hover:opacity-75 transition duration-300"><p className="text-2xl font-bold">Book Now</p></button>
-          <h1 className="absolute top-10 left-32 text-5xl font-bold text-white">Get ready for the <br /> ultimate vacation!</h1>
-          <span className="absolute top-44 right-60 text-3xl font-bold text-white">Up to</span>
-          <h1 className="absolute top-52 right-32 text-8xl font-bold text-white">75%</h1>
-          <span className="absolute top-64 right-20 text-3xl font-bold text-white">off</span>
+      <div className="my-2 flex justify-center sm:p-10 p-0 w-full">
+        <div className="relative w-full sm:px-10">
+          <img src={header} className="w-full sm:h-[400px] h-72 rounded-lg brightness-50" alt="Header" />
+          <button className="absolute top-28 sm:top-80 bg-white p-3 px-2 rounded-md sm:w-52 w-36 left-44 hover:opacity-75 transition duration-300"><p className="text-2xl font-bold">Book Now</p></button>
+          <h1 className="absolute sm:top-10 sm:left-32 sm:text-5xl text-2xl top-10 left-4 font-bold text-white">Get ready for the <br /> ultimate vacation!</h1>
+          <span className="absolute sm:top-44 sm:right-60 sm:text-3xl font-bold text-white left-14 top-36 text-2xl sm:left-auto">Up to</span>
+          <h1 className="absolute sm:top-52 sm:right-32 sm:text-8xl text-6xl top-44 left-20 sm:left-auto font-bold text-white">75%</h1>
+          <span className="absolute left-48 top-56 sm:left-auto sm:top-64 sm:right-20 sm:text-3xl font-bold text-white">off</span>
         </div>
       </div>
-      <div className="mx-auto w-full flex justify-between border-2 border-gray-300 max-w-max p-3 rounded-md">
+      <div className="mx-auto w-full sm:flex sm:justify-between border-2 border-gray-300 max-w-max p-3 rounded-md">
         <div className="p-2">
-          <img src={sleep} className="w-60 h-60 rounded-md" alt="" />
+          <img src={sleep} className="sm:w-60 w-full h-60 rounded-md" alt="" />
         </div>
         <div className="flex flex-col p-5 px-5">
           <div className="p-2 flex flex-col items-center justify-center gap-2">
@@ -225,33 +225,33 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="my-5 flex p-4 bg-gray-200">
-        <div className="relative">
-          <img src={world_map} alt="" className="w-full mix-blend-color-burn" />
+      <div className="my-5 sm:flex p-4 bg-gray-200">
+        <div className="relative mb-14 sm:mb-0">
+          <img src={world_map} alt="" className="sm:w-full w-auto mix-blend-color-burn" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-24 right-20`} alt="" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-40`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-28`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-44 right-20`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full sm:block hidden ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-28`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full sm:block hidden ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-44 right-20`} alt="" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-20 left-20`} alt="" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-10 left-40`} alt="" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-40`} alt="" />
           <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-20 right-60`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-96`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-60 left-96`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-72 left-96`} alt="" />
-          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-72 right-24`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full sm:block hidden ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute top-40 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full sm:block hidden ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute top-60 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full sm:block hidden ${ visible ? "opacity-100" : "opacity-0"} transition duration-500 ease-in-out absolute sm:top-72 top-32 left-96`} alt="" />
+          <img src={logo} className={`w-10 h-10 p-1 bg-white border-1 border-white rounded-full ${ visible ? "opacity-0" : "opacity-100"} transition duration-500 ease-in-out absolute sm:top-72 top-32 right-24`} alt="" />
         </div>
-        <div className="p-10 gap-10">
+        <div className="sm:p-10 gap-10 p-0">
           <h1 className="text-3xl font-semibold">There's an SHARMA RESIDENT STAY'S around. Always.</h1>
           <h3 className="text-2xl font-semibold mt-4" style={{ fontFamily: "Stylish" }}>Your journey, our dedication, you enjoy, we care!</h3>
-          <div className="flex gap-10 py-5">
+          <div className="flex sm:gap-10 gap-3 py-5">
             <div className="flex flex-col">
-              <p className="text-black text-5xl font-bold">40+</p>
+              <p className="text-black sm:text-5xl text-3xl font-bold">40+</p>
               <span className="text-gray-500">Countries</span>
             </div>
-            <span className="text-6xl text-gray-500 font-sans">/</span>
+            <span className="sm:text-6xl text-3xl text-gray-500 font-sans">/</span>
             <div className="flex flex-col">
-              <p className="text-black text-5xl font-bold">174,000+</p>
+              <p className="text-black sm:text-5xl text-3xl font-bold">174,000+</p>
               <span className="text-gray-500">hotels and homes</span>
             </div>
           </div>
