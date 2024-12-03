@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="flex sm:flex-row flex-col justify-between">
         <div className="mt-4">
             <p className="text-white">Download SHARMA RESIDENT STAY'S app for exciting offers.</p>
-            <div className="flex gap-4 mt-8 justify-between">
+            <div className="flex p-2 mt-8 justify-between">
                 <img src={apple_play_store} className="sm:w-44 w-32 border-2 border-white rounded-lg cursor-pointer" alt="" />
                 <img src={google_play_store} className="sm:w-44 w-32 border-2 border-white rounded-lg cursor-pointer" alt="" />
             </div>
@@ -75,81 +75,80 @@ const Footer = () => {
       <hr className="text-white w-full bg-white mt-6 mb-6" />
       <div className="flex flex-col">
         <p className="text-white text-xl font-semibold sm:block hidden">Every part of the world <span className="text-3xl font-bold">SHARMA RESIDENCY STAY's </span>hotels and rooms are avilable!!</p>
-        <div className="flex flex-wrap gap-4 md:flex-nowrap justify-between">
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels near me</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Goa</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Puri</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mahabaleshwar</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Jaipur</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Shimla</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Manali</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Udaipur</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mussoorie</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Pondicherry</li>
-    </ul>
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Delhi</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mumbai</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Nainital</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Lonavala</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Munnar</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Bangalore</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mysore</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Darjeeling</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mount Abu</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Kodaikanal</li>
-    </ul>
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Hyderabad</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Pune</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Chandigarh</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Shirdi</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Agra</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Gangtok</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Coorg</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Chennai</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Tirupati</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Dalhousie</li>
-    </ul>
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Haridwar</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Kolkata</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Ahmedabad</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Shillong</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Rishikesh</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Varanasi</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Gurgaon</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Mandarmoni</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Daman</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Yercaud</li>
-    </ul>
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Amritsar</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Madurai</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Coimbatore</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Kasauli</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Dehradun</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Travel Guide</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">All Cities Hotels</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Coupons</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Hotel UK</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Hotel USA</li>
-    </ul>
-    <ul className="w-full sm:w-auto">
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Hotel Mexico</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Hotel Brasil</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Hotels in Japan</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Hotel Indonesia</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">SHARMA RESIDENCY STAY's Vacation Homes in Europe</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Homes in Scandinavia</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Homes in Southern Europe</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Belvilla Holiday Homes</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Traum Vacation Apartments</li>
-        <li className="mt-4 text-white font-semibold hover:underline cursor-pointer text-center">Traum Holiday Homes</li>
-    </ul>
-</div>
-
+        <div className="grid grid-cols-2 gap-4 md:flex md:flex-nowrap md:justify-between">
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels near me</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Goa</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Puri</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mahabaleshwar</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Jaipur</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Shimla</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Manali</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Udaipur</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mussoorie</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Pondicherry</li>
+          </ul>
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Delhi</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mumbai</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Nainital</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Lonavala</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Munnar</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Bangalore</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mysore</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Darjeeling</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mount Abu</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Kodaikanal</li>
+          </ul>
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Hyderabad</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Pune</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Chandigarh</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Shirdi</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Agra</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Gangtok</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Coorg</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Chennai</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Tirupati</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Dalhousie</li>
+          </ul>
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Haridwar</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Kolkata</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Ahmedabad</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Shillong</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Rishikesh</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Varanasi</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Gurgaon</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Mandarmoni</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Daman</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Yercaud</li>
+          </ul>
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Amritsar</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Madurai</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Coimbatore</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Kasauli</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Dehradun</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Travel Guide</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">All Cities Hotels</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Coupons</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Hotel UK</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Hotel USA</li>
+          </ul>
+          <ul className="w-full sm:w-auto">
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Hotel Mexico</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Hotel Brasil</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Hotels in Japan</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Hotel Indonesia</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">SHARMA RESIDENCY STAY's Vacation Homes in Europe</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Homes in Scandinavia</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Homes in Southern Europe</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Belvilla Holiday Homes</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Traum Vacation Apartments</li>
+              <li className="mt-4 text-white font-semibold hover:underline cursor-pointer">Traum Holiday Homes</li>
+          </ul>
+        </div>
       </div>
       <hr className="text-white w-full bg-white mt-8 mb-8" />
       <div className="flex sm:flex-row flex-col justify-between gap-5">
