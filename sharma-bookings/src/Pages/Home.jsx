@@ -130,12 +130,12 @@ const Home = () => {
         <div className="mx-auto my-10 bg-gray-600 sm:p-4 p-3 rounded-md w-72 sm:w-auto"  style={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.3)" }}>
           <p className="text-white text-lg font-bold sm:text-3xl">Over 174,000+ hotels and homes across 35+ countries</p>
         </div>
-        <div className="flex flex-col lg:flex-row justify-center sm:flex-row items-center sm:gap-0 gap-1">
-          <div className={`flex justify-evenly sm:rounded-none rounded-md gap-4 p-4 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 w-80`}>
+        <div className="flex flex-col lg:flex-row justify-center sm:flex-row items-center sm:gap-0 gap-4">
+          <div className={`flex justify-evenly sm:rounded-none rounded-md gap-4 sm:p-4 p-2 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 sm:w-80 w-64`}>
             <MdLocationOn className="text-2xl" />
             <input type="text" className="text-xl text-black outline-none bg-white"  placeholder="Search hotels, cities" name="searchTerm" value={searchTerm} onChange={inputChangeHandler}/>
           </div>
-          <div className="flex p-4 gap-5 sm:rounded-none rounded-md justify-evenly bg-white items-center w-80 cursor-pointer" onClick={()=>setDisplayCalendar(true)}>
+          <div className="flex sm:p-4 p-2 gap-5 sm:rounded-none rounded-md justify-evenly bg-white items-center sm:w-80 w-64 cursor-pointer" onClick={()=>setDisplayCalendar(true)}>
             <FaCalendarAlt className="text-2xl w-1/4" />
             <p className="text-xl font-semibold w-3/4">
               {
@@ -148,7 +148,7 @@ const Home = () => {
               }
             </p>
           </div>
-          <div className="flex p-4 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300 w-80 sm:rounded-none rounded-md">
+          <div className="flex sm:p-4 p-2 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300 sm:w-80 w-64 sm:rounded-none rounded-md">
             <button type="button" className="px-10 text-xl text-white font-semibold border-none outline-none" onClick={navigateToSearchPage}>Search</button>
           </div>
         </div>
@@ -158,7 +158,7 @@ const Home = () => {
         {
           placesPreview && allPlacesMergerd && allPlacesMergerd.length > 0 && 
           (
-            <div className="rounded-md absolute top-56 left-14 lg:left-72 w-72 bg-white p-3 z-50 overflow-y-auto max-h-60">
+            <div className="rounded-md absolute top-52 left-14 lg:left-72 w-72 bg-white p-3 z-50 overflow-y-auto max-h-60">
               {
                 allPlacesMergerd.map((item, index) => (
                   <div key={index} className="flex gap-5 cursor-pointer p-1 items-center hover:bg-blue-600 hover:text-white text-black rounded-lg" onClick={()=>selectPlaces(item)}>
