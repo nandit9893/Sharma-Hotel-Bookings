@@ -36,7 +36,7 @@ const Footer = () => {
       <div className="flex sm:flex-row flex-col justify-between">
         <div className="mt-4">
             <p className="text-white">Download SHARMA RESIDENT STAY'S app for exciting offers.</p>
-            <div className="flex gap-4 mt-8 justify-center">
+            <div className="flex gap-4 mt-8 justify-between">
                 <img src={apple_play_store} className="sm:w-44 w-28 border-2 border-white rounded-lg cursor-pointer" alt="" />
                 <img src={google_play_store} className="sm:w-44 w-28 border-2 border-white rounded-lg cursor-pointer" alt="" />
             </div>
