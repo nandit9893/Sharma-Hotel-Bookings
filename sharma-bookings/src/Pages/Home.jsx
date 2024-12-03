@@ -126,7 +126,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-14 relative">
-      <div className="flex flex-col w-full sm:h-72 h-[350px]" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}>
+      <div className="flex flex-col w-full sm:h-72 h-[380px]" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}>
         <div className="mx-auto my-10 bg-gray-600 sm:p-4 p-3 rounded-md w-72 sm:w-auto"  style={{ boxShadow: "0px 3px 3px rgba(0, 0, 0, 0.3)" }}>
           <p className="text-white text-lg font-bold sm:text-3xl">Over 174,000+ hotels and homes across 35+ countries</p>
         </div>
