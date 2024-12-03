@@ -49,9 +49,9 @@ const Navbar = () => {
             <p className="text-[#777a7f] font-semibold text-xl">List your property</p>
           </button>
         </div>
-        <ul className="flex gap-5">
-          <Link to="/"><li className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 font-semibold text-xl cursor-pointer">HOME</li></Link>
-          <Link to="/about"><li className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</li></Link>
+        <div className="flex sm:gap-5 gap-0">
+          <Link to="/"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 font-semibold text-xl cursor-pointer">HOME</p></Link>
+          <Link to="/about"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</p></Link>
           {
             currentUser ?
             ( currentUser.role === "hotel-owner" ? 
@@ -61,10 +61,10 @@ const Navbar = () => {
             )
             :
             (
-              <Link to="/login-user"><li className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">LOGIN</li></Link>
+              <Link to="/login-user"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">LOGIN</p></Link>
             )
           }
-        </ul>
+        </div>
       </div>
     </header>
   );
