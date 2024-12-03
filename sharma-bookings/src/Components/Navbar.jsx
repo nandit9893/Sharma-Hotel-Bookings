@@ -16,20 +16,34 @@ const Navbar = () => {
   return (
     <header className="bg-blue-100 shadow-lg">
       <div className="flex justify-between items-center max-w-8xl p-2 px-5">
-        <Link to="/" className="border-none outline-none">
-          <h1 className="font-bold text-lg sm:text-xl md:text-2xl flex flex-col">
-            <span className="text-green-600 text-center text-4xl">SHARMA</span>
-            <span className="text-gray-700">RESIDENT STAY'S</span>
-          </h1>
-        </Link>
-        <div className="p-3 rounded-lg flex items-center gap-4">
+        {
+          currentUser?.role !== "hotel-owner" ?
+          (
+            <Link to="/" className="border-none outline-none cursor-pointer">
+              <h1 className="font-bold text-lg sm:text-xl md:text-2xl flex flex-col">
+                <span className="text-green-600 text-center text-4xl">SHARMA</span>
+                <span className="text-gray-700">RESIDENT STAY'S</span>
+              </h1>
+            </Link>
+          )
+          :
+          (
+            <div className="border-none outline-none">
+              <h1 className="font-bold text-lg sm:text-xl md:text-2xl flex flex-col">
+                <span className="text-green-600 text-center text-4xl">SHARMA</span>
+                <span className="text-gray-700">RESIDENT STAY'S</span>
+              </h1>
+            </div>
+          )
+        }
+        <div className="p-3 rounded-lg items-center gap-4 hidden lg:flex">
           <FaPhoneAlt className="text-4xl" />
           <div className="flex flex-col items-center p-2">
             <p className="text-xl text-gray-800 font-bold">+91 - 8171923047</p>
             <p className="text-sm text-gray-600 font-bold">Call us to book now</p>
           </div>
         </div>
-        <div className={`flex items-center gap-3 ${hideDiv ? "hidden" : ""}`}>
+        <div className={`hidden lg:flex items-center gap-3 ${hideDiv ? "hidden" : ""}`}>
           <button onClick={()=>navigate("/login-hotel-owner")} className="flex items-center mt-2 p-3 bg-white rounded-lg">
             <img src={property_logo} alt="Property logo" className="mr-2 w-8 h-8 rounded-sm" />
             <p className="text-[#777a7f] font-semibold text-xl">List your property</p>

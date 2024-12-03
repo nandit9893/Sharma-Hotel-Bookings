@@ -241,10 +241,22 @@ const updatSpecificHotel = async (req, res) => {
     if (checkOutTime) hotel.checkOutTime = checkOutTime;
     if (startingPrice) hotel.startingPrice = parseFloat(startingPrice);
     if (range) hotel.range = parseFloat(range);
-    if (restaurants) hotel.restaurants = JSON.parse(restaurants);
-    if (cinemaHalls) hotel.cinemaHalls = JSON.parse(cinemaHalls);
-    if (famousTouristPlaces) hotel.famousTouristPlaces = JSON.parse(famousTouristPlaces);
-    if (transportationFacilities) hotel.transportationFacilities = JSON.parse(transportationFacilities);
+    if (restaurants) {
+      hotel.restaurants = [];
+      hotel.restaurants = JSON.parse(restaurants)
+    }
+    if (cinemaHalls) {
+      hotel.cinemaHalls = [];
+      hotel.cinemaHalls = JSON.parse(cinemaHalls);
+    }
+    if (famousTouristPlaces) {
+      hotel.famousTouristPlaces = [];
+      hotel.famousTouristPlaces = JSON.parse(famousTouristPlaces);
+    }
+    if (transportationFacilities) {
+      hotel.transportationFacilities = [];
+      hotel.transportationFacilities = JSON.parse(transportationFacilities);
+    }
     hotel.imageURLs = imageURLs;
     await hotel.save();
     return res.status(200).json({

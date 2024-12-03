@@ -38,7 +38,7 @@ const LoginHotelOwner = () => {
         dispatch(signInSuccess(user));
         setSuccessMessage(response.data.data.message);
         setTimeout(() => {
-          navigate("/");
+          navigate("/hotel-details");
         }, 1000);
       } else {
         const errorMessage = response.data.message || "An error occurred. Please try again.";

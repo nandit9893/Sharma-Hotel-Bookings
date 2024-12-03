@@ -14,8 +14,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useParams } from "react-router-dom";
 import RoomDataDisplay from "../Components/RoomDataDisplay.jsx";
 import BookingPreviewData from "../Components/BookingPreviewData.jsx";
+import { useSelector } from 'react-redux';
 
 const YourHotel = () => {
+  const { currentUser } = useSelector((state) => state.user);
   SwiperCore.use([Navigation]);
   const { hotelID } = useParams();
   const [menu, setMenu] = useState("allPlaces");
@@ -314,9 +316,16 @@ const YourHotel = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-96 rounded-lg bg-white h-[550px] sticky top-5 bottom-10" style={{boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
-          <BookingPreviewData hotelID={hotelID} />
-        </div>
+        {
+          currentUser.role !== "hotel-owner" ?
+          (
+            <div className="flex flex-col w-96 rounded-lg bg-white h-[550px] sticky top-5 bottom-10" style={{boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
+              <BookingPreviewData hotelID={hotelID} />
+            </div>
+          )
+          :
+          null
+        }
       </div>
     </main>
   );

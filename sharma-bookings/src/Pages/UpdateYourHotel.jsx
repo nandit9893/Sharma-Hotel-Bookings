@@ -7,7 +7,6 @@ import axios from "axios";
 const UpdateYourHotel = () => {
   const {hotelID} = useParams();
   const [nearByPlacesOfHotel, setNearByPlacesOfHotel] = useState([]);
-  const [newUpdatedNearByPlacesOfHotel, setNewUpdatedNearByPlacesOfHotel] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [counter, setCounter] = useState(-1);
@@ -45,7 +44,6 @@ const UpdateYourHotel = () => {
         setLoading(true);
         const response = await axios.get(newURL);
         if(response.data.success) {
-          console.log(response.data.data);
           setData({
             hotelName: response.data.data.hotelName || "",
             address: response.data.data.address || "",
@@ -136,26 +134,177 @@ const UpdateYourHotel = () => {
     setUploading(false);
   };
 
-  const sumbitHandler = (event) => {
-
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    let finalRestaurants = [];
+    let finalTouristsPlaces = [];
+    let finalCinemaHalls = [];
+    let finalTransportationFacilities = [];
+    if (nearByPlacesOfHotel.length > 0) {  
+      if (nearByPlacesOfHotel.some((item) => item.nearByPlaces === "restaurants")) {
+        const allRestaurantsFromNearByPlaces = nearByPlacesOfHotel.filter((item) => item.nearByPlaces === "restaurants").map((item) => ({ name: item.name, distance: item.distance }));
+        const allRestaurantsFromData = data.restaurants.map((item) => ({ name: item.name, distance: item.distance }));
+        finalRestaurants = [...allRestaurantsFromData, ...allRestaurantsFromNearByPlaces];
+      }
+      if (nearByPlacesOfHotel.some((item) => item.nearByPlaces === "famousTouristPlaces")) {
+        const allFamousTouristsPlacesFromNearByPlaces = nearByPlacesOfHotel.filter((item) => item.nearByPlaces === "famousTouristPlaces").map((item) => ({ name: item.name, distance: item.distance }));
+        const allFamousTouristPlacesFromData = data.famousTouristPlaces.map((item) => ({ name: item.name, distance: item.distance }));
+        finalTouristsPlaces = [...allFamousTouristPlacesFromData, ...allFamousTouristsPlacesFromNearByPlaces];
+      }
+      if (nearByPlacesOfHotel.some((item) => item.nearByPlaces === "cinemaHalls")) {
+        const allCinemaHallsFromNearByPlaces = nearByPlacesOfHotel.filter((item) => item.nearByPlaces === "cinemaHalls").map((item) => ({ name: item.name, distance: item.distance }));
+        const allCinemaHallsFromData = data.cinemaHalls.map((item) => ({ name: item.name, distance: item.distance }));
+        finalCinemaHalls = [...allCinemaHallsFromData, ...allCinemaHallsFromNearByPlaces];
+      }
+      if (nearByPlacesOfHotel.some((item) => item.nearByPlaces === "transportationFacilities")) {
+        const allTransportationFacilitiesFromNearByPlaces = nearByPlacesOfHotel.filter((item) => item.nearByPlaces === "transportationFacilities").map((item) => ({ name: item.name, distance: item.distance }));
+        const allTransportationFacilitiesFromData = data.transportationFacilities.map((item) => ({ name: item.name, distance: item.distance }));
+        finalTransportationFacilities = [...allTransportationFacilitiesFromData,  ...allTransportationFacilitiesFromNearByPlaces];
+      }
+    }
+      const formData = new FormData();
+      if(data.hotelName) {
+        formData.append("hotelName", data.hotelName);
+      }
+      if(data.address) {
+        formData.append("address", data.address);
+      }
+      if(data.country) {
+        formData.append("country", data.country);
+      }
+      if(data.state) {
+        formData.append("state", data.state);
+      }
+      if(data.city) {
+        formData.append("city", data.city);
+      }
+      if(data.pinCode) {
+        formData.append("pinCode", data.pinCode);
+      }
+      if(data.description) {
+        formData.append("description", data.description);
+      }
+      if(data.phoneNumber) {
+        formData.append("phoneNumber", data.phoneNumber);
+      }
+      if(data.amenities) {
+        formData.append("amenities", data.amenities);
+      }
+      if(data.checkInTime) {
+        formData.append("checkInTime", data.checkInTime);
+      }
+      if(data.checkOutTime) {
+        formData.append("checkOutTime", data.checkOutTime);
+      }
+      if(data.startingPrice) {
+        formData.append("startingPrice", data.startingPrice);
+      }
+      if (finalRestaurants.length > 0) {
+        formData.append("restaurants", JSON.stringify(finalRestaurants));
+      } else {
+        formData.append("restaurants", JSON.stringify(data.restaurants.map((item) => ({ name: item.name, distance: item.distance }))))
+      }
+      if (finalCinemaHalls.length > 0) {
+        formData.append("cinemaHalls", JSON.stringify(finalCinemaHalls));
+      } else {
+        formData.append("cinemaHalls", JSON.stringify( data.cinemaHalls.map((item) => ({ name: item.name, distance: item.distance }))))
+      }
+      if (finalTouristsPlaces.length > 0) {
+        formData.append("famousTouristPlaces", JSON.stringify(finalTouristsPlaces));
+      } else {
+        formData.append("famousTouristPlaces", JSON.stringify(data.famousTouristPlaces.map((item) => ({ name: item.name, distance: item.distance }))));
+      }
+      if (finalTransportationFacilities.length > 0) {
+        formData.append("transportationFacilities", JSON.stringify(finalTransportationFacilities));
+      } else {
+        formData.append("transportationFacilities", JSON.stringify(data.transportationFacilities.map((item) => ({ name: item.name, distance: item.distance }))));
+      }
+      if(imageData.length > 0) {
+        for (const [key, value] of Object.entries(data)) {
+          if (key === "imageURLs") {
+            value.forEach((image) => {
+              formData.append("imageURLs", image);
+            });
+          }
+        }
+      }
+      for(const [key, value] of formData.entries()) {
+        console.log(`${key} = ${value}`)
+      }
+      const newURL = `${URL}/sharma/resident/stays/hotel/data/update/hotel/${hotelID}`;
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("accessToken");
+        const response = await axios.patch(newURL, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setLoading(false);
+        if(response.data.success) {
+          setResult(response.data.message);
+          setData({
+            hotelName: "",
+            address: "",
+            country: "",
+            state: "",
+            city: "",
+            pinCode: "",
+            description: "",
+            imageURLs: [],
+            phoneNumber: "",
+            amenities: [],
+            checkInTime: "",
+            checkOutTime: "",
+            startingPrice: "",
+            restaurants: [],
+            cinemaHalls: [],
+            famousTouristPlaces: [],
+            transportationFacilities: [],
+          });
+          navigate(`/view-hotel/${response.data.data._id}`);
+        } else {
+          setResult(response.data.message);
+        }
+      } catch (error) {
+        setResult(error.response?.data?.message || "An error occurred");
+      }
+      finally {
+        setLoading(false);
+      }
   };
+  
 
   const handleRemove = (id) => {
     setNearByPlacesOfHotel((prevPlaces) => prevPlaces.filter((place) => place.id !== id));
   };
 
-  const handleRemoveAllPlace = (id) => {
-
+  const handleRemoveAllPlace = (id, placeType) => {
+    if (placeType === "restaurant") {
+      const newRestaurants = data.restaurants.filter((item) => item._id !== id);
+      setData((prev) => ({ ...prev, restaurants: newRestaurants }));
+    } else if (placeType === "cinemaHall") {
+      const newCinemaHalls = data.cinemaHalls.filter((item) => item._id !== id);
+      setData((prev) => ({ ...prev, cinemaHalls: newCinemaHalls }));
+    } else if (placeType === "transportationFacility") {
+      const newTransportationFacilities = data.transportationFacilities.filter((item) => item._id !== id);
+      setData((prev) => ({ ...prev, transportationFacilities: newTransportationFacilities }));
+    } else if (placeType === "famousTouristPlace") {
+      const newFamousTouristPlaces = data.famousTouristPlaces.filter((item) => item._id !== id);
+      setData((prev) => ({ ...prev, famousTouristPlaces: newFamousTouristPlaces }));
+    }
   };
 
-  const editAllPlaces = (event, id) => {
-    const { name, value } = event.target;
-  }; 
+  const removeImageHandler = (url) => {
+    const newImageURLs = data.imageURLs.filter((item) => item !== url);
+    setData((prev)=> ({...prev, imageURLs :  newImageURLs}));
+  };
 
   return (
     <div className="p-3 px-16 w-full">
       <h1 className="text-5xl text-center font-semibold my-7" style={{ fontFamily: '"Edu AU VIC WA NT Pre", cursive'}}>{data.hotelName}</h1>
-      <form onSubmit={sumbitHandler} className="flex flex-col gap-4 mx-auto">
+      <form onSubmit={submitHandler } className="flex flex-col gap-4 mx-auto">
         <div className="flex gap-4">
           <div className="flex flex-col flex-1 gap-2">
             <div className="flex flex-col gap-1">
@@ -213,12 +362,12 @@ const UpdateYourHotel = () => {
                 (
                   data.restaurants.map((restaurant) => (
                     <div key={restaurant._id} className="flex gap-3 mt-4 items-center justify-center">
-                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-full text-xl">
+                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-96 text-xl">
                         <option value="restaurants">Restaurants</option>
                       </select>
-                      <input name="name" id="name" type="text" value={restaurant.name} onChange={(event)=>editAllPlaces(event, restaurant._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
-                      <input name="distance" id="distance" type="number" value={restaurant.distance} max="30" onChange={(event)=>editAllPlaces(event, restaurant._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Distance (in km)" />
-                      <button type="button" onClick={()=>handleRemoveAllPlace(restaurant._id)} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
+                      <input readOnly name="name" id="name" type="text" value={restaurant.name} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
+                      <input readOnly name="distance" id="distance" type="number" value={restaurant.distance} max="30" className="text-xl border p-2 rounded-lg w-20" placeholder="Distance (in km)" />
+                      <button type="button" onClick={()=>handleRemoveAllPlace(restaurant._id, "restaurant")} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
                     </div>
                   ))
                 )
@@ -230,12 +379,12 @@ const UpdateYourHotel = () => {
                 (
                   data.cinemaHalls.map((cinemaHall) => (
                     <div key={cinemaHall._id} className="flex gap-3 mt-4 items-center justify-center">
-                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-full text-xl">
+                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-96 text-xl">
                         <option value="cinemaHalls">Cinema Hall</option>
                       </select>
-                      <input name="name" id="name" type="text" value={cinemaHall.name} onChange={(event)=>editAllPlaces(event, cinemaHall._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
-                      <input name="distance" id="distance" type="number" value={cinemaHall.distance} max="30" onChange={(event)=>editAllPlaces(event, cinemaHall._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Distance (in km)" />
-                      <button type="button" onClick={()=>handleRemoveAllPlace(cinemaHall._id)} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
+                      <input readOnly name="name" id="name" type="text" value={cinemaHall.name} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
+                      <input readOnly name="distance" id="distance" type="number" value={cinemaHall.distance} max="30" className="text-xl border p-2 rounded-lg w-20" placeholder="Distance (in km)" />
+                      <button type="button" onClick={()=>handleRemoveAllPlace(cinemaHall._id, "cinemaHall")} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
                     </div>
                   ))
                 )
@@ -247,12 +396,12 @@ const UpdateYourHotel = () => {
                 (
                   data.transportationFacilities.map((transportationFacility) => (
                     <div key={transportationFacility._id} className="flex gap-3 mt-4 items-center justify-center">
-                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-full text-xl">
+                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-96 text-xl">
                         <option value="transportationFacility">Transport Facility</option>
                       </select>
-                      <input name="name" id="name" type="text" value={transportationFacility.name} onChange={(event)=>editAllPlaces(event, transportationFacility._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
-                      <input name="distance" id="distance" type="number" value={transportationFacility.distance} max="30" onChange={(event)=>editAllPlaces(event, transportationFacility._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Distance (in km)" />
-                      <button type="button" onClick={()=>handleRemoveAllPlace(transportationFacility._id)} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
+                      <input readOnly name="name" id="name" type="text" value={transportationFacility.name} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
+                      <input readOnly name="distance" id="distance" type="number" value={transportationFacility.distance} max="30" className="text-xl border p-2 rounded-lg w-20" placeholder="Distance (in km)" />
+                      <button type="button" onClick={()=>handleRemoveAllPlace(transportationFacility._id, "transportationFacility")} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
                     </div>
                   ))
                 )
@@ -264,12 +413,12 @@ const UpdateYourHotel = () => {
                 (
                   data.famousTouristPlaces.map((famousTouristPlace) => (
                     <div key={famousTouristPlace._id} className="flex gap-3 mt-4 items-center justify-center">
-                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-full text-xl">
+                      <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-96 text-xl">
                         <option value="famousTouristPlace">Tourist Place</option>
                       </select>
-                      <input name="name" id="name" type="text" value={famousTouristPlace.name} onChange={(event)=>editAllPlaces(event, famousTouristPlace._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
-                      <input name="distance" id="distance" type="number" value={famousTouristPlace.distance} max="30" onChange={(event)=>editAllPlaces(event, famousTouristPlace._id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Distance (in km)" />
-                      <button type="button" onClick={()=>handleRemoveAllPlace(famousTouristPlace._id)} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
+                      <input readOnly name="name" id="name" type="text" value={famousTouristPlace.name} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
+                      <input readOnly name="distance" id="distance" type="number" value={famousTouristPlace.distance} max="30" className="text-xl border p-2 rounded-lg w-20" placeholder="Distance (in km)" />
+                      <button type="button" onClick={()=>handleRemoveAllPlace(famousTouristPlace._id, "famousTouristPlace")} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit text-xs"><FaMinus /></button>
                     </div>
                   ))
                 )
@@ -279,14 +428,14 @@ const UpdateYourHotel = () => {
               {
                 nearByPlacesOfHotel.map((place) => (
                   <div key={place.id} className="flex gap-3 mt-4 items-center justify-center">
-                    <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-full text-xl" onChange={(event)=>inputPlacesAndDistances(event, place.id)}>
+                    <select name="nearByPlaces" id="nearByPlaces" className="border p-2 rounded-lg w-96 text-xl" onChange={(event)=>inputPlacesAndDistances(event, place.id)}>
                       <option value="restaurants">Restaurants</option>
                       <option value="cinemaHalls">Cinema Hall</option>
                       <option value="famousTouristPlaces">Tourist Place</option>
                       <option value="transportationFacilities">Transport Facilities</option>
                     </select>
                     <input name="name" id="name" type="text" value={place.name} onChange={(event)=>inputPlacesAndDistances(event, place.id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Name of place" />
-                    <input name="distance" id="distance" type="number" value={place.distance} max="30" onChange={(event)=>inputPlacesAndDistances(event, place.id)} className="text-xl border p-2 rounded-lg w-full" placeholder="Distance (in km)" />
+                    <input name="distance" id="distance" type="number" value={place.distance} max="30" min="5" onChange={(event)=>inputPlacesAndDistances(event, place.id)} className="text-xl border p-2 rounded-lg w-20" placeholder="Distance (in km)" />
                     <button type="button" onClick={()=>handleRemove(place.id)} className="bg-red-500 text-white p-1 rounded-full mx-auto mt-2 w-fit"><FaMinus /></button>
                   </div>
                 ))
@@ -305,24 +454,33 @@ const UpdateYourHotel = () => {
           </div>
           <button disabled={loading || uploading} type="submit" className="p-3 bg-green-700 text-white text-xl rounded-lg uppercase hover:opacity-95 disabled:opacity-80">{loading ? "UPDATING" : "UPDATE HOTEL"}</button>
           {
-            data && data.imageURLs.length > 0 ? 
+            imageData && imageData.length > 0 ?
             (
               <div className="grid grid-cols-5 gap-6 mx-auto">
                 {
-                  data.imageURLs.map((url, index) => (
+                  imageData.length > 0 && imageData.map((url, index)=> (
                     <div className="relative flex gap-1" key={index}>
-                      <img className="cursor-pointer w-60 rounded-lg object-cover h-52 transition-transform duration-300 ease-in-out hover:scale-105" src={url} alt={`Image ${index + 2}`} />
-                      <FaTrash onClick={()=>removeImageHandler(index+1)} className="absolute top-2 right-2 text-white cursor-pointer hover:text-red-500"/>
+                      <img src={url} alt="" className="cursor-pointer w-60 rounded-lg object-cover h-52 transition-transform duration-300 ease-in-out hover:scale-105" />
+                      <FaTrash className="absolute top-2 right-2 text-white cursor-pointer hover:text-red-500" />
                     </div>
                   ))
                 }
               </div>
-            ) 
-            : 
+            )
+            :
             (
-              <div className="flex justify-center items-center">
-                  <p className="flex items-center font-semibold text-xl">No images uploaded yet.</p>
-              </div>
+              data && data.imageURLs.length > 0 && (
+                <div className="grid grid-cols-5 gap-6 mx-auto">
+                {
+                  data.imageURLs.map((url, index) => (
+                    <div className="relative flex gap-1" key={index}>
+                      <img className="cursor-pointer w-60 rounded-lg object-cover h-52 transition-transform duration-300 ease-in-out hover:scale-105" src={url} alt={`Image ${index + 2}`} />
+                      <FaTrash onClick={()=>removeImageHandler(url)} className="absolute top-2 right-2 text-white cursor-pointer hover:text-red-500"/>
+                    </div>
+                  ))
+                }
+                </div>
+              )
             )
           }
           {
