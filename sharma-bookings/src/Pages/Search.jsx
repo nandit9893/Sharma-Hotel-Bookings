@@ -183,13 +183,13 @@ const Search = () => {
   };
 
   return (
-    <div className="my-5 flex flex-col px-10 relative">
-      <div className="flex justify-center">
-        <div className={`flex justify-evenly gap-4 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 w-80`}>
-          <MdLocationOn className="text-2xl" />
-          <input type="text" className="text-xl text-black outline-none bg-white"  placeholder="Search hotels, cities" name="searchTerm" value={hotelSearchData.searchTerm} onChange={inputChangeHandlerHotels}/>
+    <div className="my-5 flex flex-col sm:px-10 p-3 relative">
+      <div className="flex flex-col lg:flex-row justify-center sm:flex-row items-center sm:gap-0 gap-4">
+        <div className={`flex justify-evenly sm:rounded-none rounded-md sm:gap-4 gap-0 sm:p-4 p-2 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 sm:w-80 w-64`}>
+          <MdLocationOn className="text-2xl sm:block hidden" />
+          <input type="text" className="text-xl text-black outline-none bg-white w-full"  placeholder="Search hotels, cities" name="searchTerm" value={hotelSearchData.searchTerm} onChange={inputChangeHandlerHotels}/>
         </div>
-        <div className="flex p-4 gap-5 justify-evenly bg-white items-center w-80 cursor-pointer border-2" onClick={()=>setDisplayCalendar(true)}>
+        <div className="flex sm:p-4 p-2 gap-5 sm:rounded-none rounded-md justify-evenly bg-white items-center sm:w-80 w-64 cursor-pointer" onClick={()=>setDisplayCalendar(true)}>
           <FaCalendarAlt className="text-2xl w-1/4" />
           <p className="text-xl font-semibold w-3/4">
             {
@@ -202,17 +202,17 @@ const Search = () => {
             }
           </p>
         </div>
-        <div className="cursor-pointer flex p-4 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300">
-            <button type="submit" className="px-10 text-xl text-white font-semibold outline-none border-none" onClick={searhOnTheBasisOfHotels}>Search</button>
+        <div className="flex sm:p-4 p-2 justify-evenly bg-green-600 items-center rounded-r-md hover:bg-green-700 transition duration-300 sm:w-80 w-64 sm:rounded-none rounded-md">
+            <button type="submit" className="px-10 text-xl text-white font-semibold border-none outline-none" onClick={searhOnTheBasisOfHotels}>Search</button>
         </div>
         {
           displayCalendar && (
-            <Calender className="rounded-md absolute top-16 right-[500px] bg-white p-3 z-50" onChange={(newDate)=>{setDate(newDate); setDisplayCalendar(false)}} value={date}/>
+            <Calender className="rounded-md absolute top-28 left-4 lg:left-auto lg:right-[500px] w-full lg:w-62 max-w-xs lg:max-w-lg bg-white p-3 z-50" onChange={(newDate)=>{setDate(newDate); setDisplayCalendar(false)}} value={date}/>
           )
         }
       </div>
       <hr className="w-auto h-[2px] bg-gray-200 mt-5"/>
-      <div className="flex px-5 h-[600px]">
+      <div className="flex flex-col sm:flex-row sm:px-5 px-2 h-auto md:h-[600px]">
         <div className="flex flex-col h-[600px] overflow-y-auto cursor-pointer scrollbar scrollbar-thumb-[#4B5563] scrollbar-track-[#E5E7EB] pr-4">
           <div className="flex flex-col gap-2">
             <h2 className="text-3xl font-bold mt-2">Filters</h2>
@@ -297,7 +297,7 @@ const Search = () => {
             <button type="submit" className="bg-green-600 p-2 rounded-lg text-white my-2 hover:bg-green-700 transition duration-300">Search</button>
           </form>
         </div>
-        <hr className="w-[2px] bg-gray-300 h-[500px] mx-5"/>
+        <hr className="w-60 h-[5px] bg-gray-300 mx-5 lg:w-[2px] lg:h-[500px] sm:w-full sm:h-[2px]" />
         <div className="flex flex-col">
           <h1 className="text-3xl font-semibold text-center text-slate-700 my-2">Hotels Result</h1>
           <div className="p-2 space-y-10 max-h-[600px] overflow-y-auto scrollbar-hide">
