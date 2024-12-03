@@ -20,8 +20,8 @@ const Navbar = () => {
           currentUser?.role !== "hotel-owner" ?
           (
             <Link to="/" className="border-none outline-none cursor-pointer">
-              <h1 className="font-bold text-lg sm:text-xl md:text-2xl flex flex-col">
-                <span className="text-green-600 text-center text-4xl">SHARMA</span>
+              <h1 className="font-bold flex flex-col">
+                <span className="text-green-600 text-center sm:text-4xl text-2xl">SHARMA</span>
                 <span className="text-gray-700">RESIDENT STAY'S</span>
               </h1>
             </Link>
@@ -29,8 +29,8 @@ const Navbar = () => {
           :
           (
             <div className="border-none outline-none">
-              <h1 className="font-bold text-lg sm:text-xl md:text-2xl flex flex-col">
-                <span className="text-green-600 text-center text-4xl">SHARMA</span>
+              <h1 className="font-bold flex flex-col">
+                <span className="text-green-600 text-center sm:text-4xl text-2xl">SHARMA</span>
                 <span className="text-gray-700">RESIDENT STAY'S</span>
               </h1>
             </div>
