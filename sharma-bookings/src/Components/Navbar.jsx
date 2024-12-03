@@ -61,7 +61,7 @@ const Navbar = () => {
             )
             :
             (
-              <Link to="/login-user"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">LOGIN</p></Link>
+              <Link to="/login-user"><p className="text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">LOGIN</p></Link>
             )
           }
         </div>
