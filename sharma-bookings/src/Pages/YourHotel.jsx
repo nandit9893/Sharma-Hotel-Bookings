@@ -122,7 +122,7 @@ const YourHotel = () => {
             {
               hotelData.imageURLs.map((url) => (
                 <SwiperSlide key={url}>
-                  <div className="sm:h-[550px] h-52 sm:w-auto w-[412px]" style={{background: `url(${url}) center no-repeat`, backgroundSize: "cover", objectFit: "contain",}}></div>
+                  <div className="sm:h-[550px] h-52 sm:w-auto w-[400px]" style={{background: `url(${url}) center no-repeat`, backgroundSize: "cover", objectFit: "contain",}}></div>
                 </SwiperSlide>
               ))
             }
