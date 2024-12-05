@@ -13,6 +13,14 @@ const Navbar = () => {
 
   const hideDiv = ["/search-hotel"].includes(location.pathname);
 
+  const navigationHotelOwner = () => {
+    if(currentUser?.role === "hotel-owner" && localStorage.getItem("accessToken")) {
+      navigate("/hotel-details");
+    } else {
+      navigate("/signup-hotel-owner");
+    }
+  };
+
   return (
     <header className="bg-blue-100 shadow-lg">
       <div className="flex justify-between items-center max-w-8xl p-2 px-5">
@@ -44,7 +52,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className={`hidden lg:flex items-center gap-3 ${hideDiv ? "hidden" : ""}`}>
-          <button onClick={()=>navigate("/login-hotel-owner")} className="flex items-center mt-2 p-3 bg-white rounded-lg">
+          <button onClick={navigationHotelOwner} className="flex items-center mt-2 p-3 bg-white rounded-lg">
             <img src={property_logo} alt="Property logo" className="mr-2 w-8 h-8 rounded-sm" />
             <p className="text-[#777a7f] font-semibold text-xl">List your property</p>
           </button>

@@ -197,7 +197,7 @@ const Home = () => {
       <div className="my-2 flex justify-center sm:p-10 p-0 w-full">
         <div className="relative w-full sm:px-10">
           <img src={header} className="w-full sm:h-[400px] h-72 rounded-lg brightness-50" alt="Header" />
-          <button className="absolute top-28 sm:top-80 bg-white sm:p-3 p-1 px-2 rounded-md sm:w-52 w-36 right-10 hover:opacity-75 transition duration-300"><p className="text-2xl font-bold">Book Now</p></button>
+          <button className="absolute top-28 sm:top-80 bg-white sm:p-3 p-1 px-2 rounded-md sm:w-52 w-36 sm:left-14 right-10 hover:opacity-75 transition duration-300"><p className="text-2xl font-bold">Book Now</p></button>
           <h1 className="absolute sm:top-10 sm:left-32 sm:text-5xl text-2xl top-10 left-4 font-bold text-white">Get ready for the <br /> ultimate vacation!</h1>
           <span className="absolute sm:top-44 sm:right-60 sm:text-3xl font-bold text-white left-14 top-36 text-2xl sm:left-auto">Up to</span>
           <h1 className="absolute sm:top-52 sm:right-32 sm:text-8xl text-6xl top-44 left-20 sm:left-auto font-bold text-white">75%</h1>
