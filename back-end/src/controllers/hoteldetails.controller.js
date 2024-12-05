@@ -303,9 +303,9 @@ const getSearchedWithHotels = async (req, res) => {
     const searchTerm = req.query.searchTerm || "";
     const sort = req.query.sort || "createdAt";
     const order = req.query.order === "desc" ? 1 : -1;
-    const startingPrice = req.query.startingPrice ? parseFloat(req.query.startingPrice) : null; 
-    const minPrice = req.query.minPrice ? parseFloat(req.query.minPrice) : null;
-    const maxPrice = req.query.maxPrice ? parseFloat(req.query.maxPrice) : null;
+    const startingPrice = req.query.startingPrice ? parseInt(req.query.startingPrice) : null; 
+    const minPrice = req.query.minPrice ? parseInt(req.query.minPrice) : null;
+    const maxPrice = req.query.maxPrice ? parseInt(req.query.maxPrice) : null;
 
     let query = {};
 

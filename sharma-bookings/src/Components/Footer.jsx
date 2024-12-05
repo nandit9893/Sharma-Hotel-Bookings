@@ -157,7 +157,7 @@ const Footer = () => {
             <a href="https://www.instagram.com/nanditsharma063?igsh=OHZjenBvbTZ4aTN4" target="_blank"><FaInstagram className="text-white text-3xl"/></a>
             <a href="https://github.com/nandit9893" target="_blank"><FaGithub className="text-white text-3xl"/></a>
             <a href="https://www.linkedin.com/in/nandit-sharma-9a0174203/" target="_blank"><FaLinkedinIn className="text-white text-3xl" /></a>
-            <a href="https://x.com/classy9893"><FaTwitter className="text-white text-3xl"/></a>
+            <a href="https://x.com/classy9893" target="_blank"><FaTwitter className="text-white text-3xl"/></a>
             <a href=""><FaYoutube className="text-white text-3xl"/></a>
         </div>
         <div className="flex justify-center">

@@ -456,7 +456,7 @@ const UpdateYourHotel = () => {
           {
             imageData && imageData.length > 0 ?
             (
-              <div className="grid grid-cols-5 gap-6 mx-auto">
+              <div className="grid sm:grid-cols-5 grid-cols-2 gap-6 mx-auto">
                 {
                   imageData.length > 0 && imageData.map((url, index)=> (
                     <div className="relative flex gap-1" key={index}>
