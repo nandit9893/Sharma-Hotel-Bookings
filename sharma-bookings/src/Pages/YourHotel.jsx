@@ -221,7 +221,7 @@ const YourHotel = () => {
             </div>
           </div>
           <RoomDataDisplay hotelID={hotelID}/>
-          <div className="my-10 sm:max-w-2xl sm:p-0 p-3 w-[360px]">
+          <div className="my-10 sm:max-w-2xl sm:p-0 p-3 w-auto">
             <h1 className="text-3xl font-bold">Near by places</h1>
             <div className="border-2 border-gray-300 max-w-1xl rounded-lg my-3 p-2 bg-slate-100">
               <div className="flex flex-1 p-2 items-center gap-5">
@@ -246,7 +246,7 @@ const YourHotel = () => {
                 </div>
                 <hr className="w-full h-[2px] bg-gray-200" />
                 <div className="flex justify-around p-2 bg-blue-100">
-                  <div className="flex flex-col py-2 px-1 w-2/4 ">
+                  <div className="flex flex-col py-2 px-1 sm:w-2/4 w-80">
                   {
                     allPlaces.length > 0 &&
                     (
