@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Geist:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(241, 245, 241);
+}
+
+@keyframes zigzagMove {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(2px); 
+  }
+  50% {
+    transform: translateX(0); 
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    transform: translateX(0); 
+  }
+}
+
+.zigzag-animation {
+  animation: zigzagMove 0.1s ease-in-out 5;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px; 
+  cursor: pointer; 
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  overflow-y: scroll; 
+  scroll-behavior: smooth; 
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
