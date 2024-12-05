@@ -142,16 +142,16 @@ const HotelDetails = () => {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-4xl text-sky-500 font-semibold text-center my-7">OWNER PROFILE</h1>
-      <form onSubmit={updateOwnerProfile} className="flex flex-col bg-slate-200 gap-2 border-2 border-black p-3 rounded-lg">
-        <div className="flex justify-between p-2">
+      <form onSubmit={updateOwnerProfile} className="flex flex-col bg-slate-200 sm:gap-2 gap-0 border-2 border-black p-3 rounded-lg">
+        <div className="flex flex-col sm:flex-row justify-between p-2">
           <p className="text-xl font-semibold p-2">Owner</p>
           <input type="text" name="name" id="name" value={data.name} onChange={inputChangeHandler} className="w-72 border p-2 rounded-lg" placeholder="owner name" />
         </div>
-        <div className="flex justify-between p-2">
+        <div className="flex flex-col sm:flex-row justify-between p-2">
           <p className="text-xl font-semibold p-2">Email</p>
           <input type="email" name="email" id="email" value={data.email} onChange={inputChangeHandler} className="w-72 border p-2 rounded-lg" placeholder="owner email" />
         </div>
-        <div className="flex justify-between p-2">
+        <div className="flex flex-col sm:flex-row justify-between p-2">
           <p className="text-xl font-semibold p-2">Password</p>
           <input type="password" name="password" id="password" value={data.password} onChange={inputChangeHandler} className="w-72 border p-2 rounded-lg" placeholder="owner password" />
         </div>

@@ -68,7 +68,7 @@ const SignupHotelOwner = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Already have an account?</p>
-        <Link to="/login-hotel-owner"><span className="text-blue-700">Sign Up</span></Link>
+        <Link to="/login-hotel-owner"><span className="text-blue-700">Sign In</span></Link>
       </div>
       <div className="flex justify-center">
         {
