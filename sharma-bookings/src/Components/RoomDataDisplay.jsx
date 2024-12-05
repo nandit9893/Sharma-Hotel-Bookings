@@ -61,14 +61,14 @@ const RoomDataDisplay = ({hotelID}) => {
     };
     
   return (
-    <div className="my-10 sm:w-2xl sm:p-3 p-4 w-96">
+    <div className="my-10 sm:w-2xl sm:p-3 p-4 w-80">
       <h1 className="text-3xl font-bold my-2">Choose your room</h1>
       {
         roomData && roomData.length > 0 && (
           roomData.map((room) => (
           <div className="border-2 my-4 rounded-lg border-gray-300 bg-slate-100" key={room._id}>
             <p className="px-4 py-1 text-white font-semibold rounded-t-lg" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}><span className="items-center mr-2 text-yellow-300">{"★".repeat(1)}</span>SELECT CATEGORY</p>
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col sm:p-2 p-0">
               <div className="flex justify-between p-2">
                 <div className="flex flex-col p-2 sm:gap-2 gap-0">
                   <h2 className="font-bold text-gray-500 sm:text-4xl text-2xl" style={{ fontFamily: "Faculty Glyphic, sans-serif" }}>{room.roomStandard}</h2>
