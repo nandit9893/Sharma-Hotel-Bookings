@@ -171,8 +171,8 @@ const YourHotel = () => {
               </div>
             </div>
           </div>
-          <div className="sm:p-0 max-w-2xl mt-10 w-auto sm:w-auto px-2">
-            { hotelData && hotelData.description && <p className="font-medium text-xl" style={{ fontFamily: '"Geist", sans-serif' }}>{hotelData.description}</p>}
+          <div className="sm:p-0 max-w-2xl mt-10 w-96 sm:w-full px-2">
+            { hotelData && hotelData.description && <p className="font-medium sm:text-xl text-lg" style={{ fontFamily: '"Geist", sans-serif' }}>{hotelData.description}</p>}
           </div>
           <div className="my-10 px-5 sm:px-0">
             <h1 className="text-3xl font-bold">Amenities</h1>
@@ -312,7 +312,7 @@ const YourHotel = () => {
           </div>
         </div>
         {
-          currentUser.role !== "hotel-owner" || window.innerWidth >= 468 ? (
+          currentUser?.role !== "hotel-owner" || window.innerWidth >= 468 ? (
             <div className="hidden sm:block lg:flex flex-col w-96 rounded-lg bg-white h-[550px] sticky top-5 bottom-10" style={{ boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
               <BookingPreviewData hotelID={hotelID} />
             </div>
