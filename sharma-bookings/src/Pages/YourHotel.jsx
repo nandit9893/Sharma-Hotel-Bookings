@@ -171,7 +171,7 @@ const YourHotel = () => {
               </div>
             </div>
           </div>
-          <div className="sm:p-0 max-w-2xl mt-10 w-96 sm:w-auto px-5">
+          <div className="sm:p-0 max-w-2xl mt-10 w-80 sm:w-auto px-5">
             { hotelData && hotelData.description && <p className="font-medium text-xl" style={{ fontFamily: '"Geist", sans-serif' }}>{hotelData.description}</p>}
           </div>
           <div className="my-10 px-5 sm:px-0">
