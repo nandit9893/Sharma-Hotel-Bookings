@@ -1,3 +1,4 @@
+import nodemailer from "nodemailer";
 import Booking from "../models/booking.models.js";
 import puppeteer from "puppeteer";
 import invoice_template_pdf from "../utils/InvoiceTemplatePDF.js";
@@ -5,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+import sendBookingPDFTemplateToUser from "../utils/sendBookingPDFTemplate.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -278,6 +280,15 @@ const bookHotel = async (req, res) => {
 
     newBooking.invoicePDF = uploadPDF.secure_url || uploadPDF.url;
     await newBooking.save();
+    await sentPDFToUserWhoBookedTheHotel(
+      req,
+      res,
+      customerName,
+      customerEmail,
+      hotelName,
+      newBooking.bookingID,
+      newBooking.invoicePDF
+    );
 
     return res.status(200).json({
       success: true,
@@ -288,6 +299,81 @@ const bookHotel = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Error creating the Booking",
+      error: error.message,
+    });
+  }
+};
+
+const sentPDFToUserWhoBookedTheHotel = async (
+  req,
+  res,
+  customerName,
+  customerEmail,
+  hotelName,
+  newBookingID,
+  pdfURL
+) => {
+  if (!customerName.trim()) {
+    return res.status(400).json({
+      success: false,
+      message: "Customer Name is required",
+    });
+  }
+  if (!customerEmail) {
+    return res.status(400).json({
+      success: false,
+      message: "Customer Email is required",
+    });
+  }
+  if (!hotelName.trim()) {
+    return res.status(400).json({
+      success: false,
+      message: "Hotel Name is required",
+    });
+  }
+  if (!newBookingID) {
+    return res.status(400).json({
+      success: false,
+      message: "Booking ID is required",
+    });
+  }
+  if (!pdfURL) {
+    return res.status(400).json({
+      success: false,
+      message: "PDF URL is required",
+    });
+  }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      secure: true,
+      port: 465,
+      auth: {
+        user: process.env.NODE_MAILER_USER,
+        pass: process.env.NODE_MAILER_PASSWORD,
+      },
+    });
+    const mailOptions = {
+      from: `"Sharma Resident & Stay's" <${process.env.NODE_MAILER_USER}>`,
+      to: customerEmail,
+      subject: "Booking Confirmation",
+      html: sendBookingPDFTemplateToUser(customerName, hotelName, newBookingID),
+      attachments: [
+        {
+          fileName: `${newBookingID}.pdf`,
+          path: pdfURL,
+        },
+      ],
+    };
+    await transporter.sendMail(mailOptions);
+    return res.status(201).json({
+      success: true,
+      message: "Email sent successfully with pdf",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while sending pdf with email",
       error: error.message,
     });
   }
