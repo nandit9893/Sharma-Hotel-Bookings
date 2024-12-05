@@ -61,14 +61,14 @@ const RoomDataDisplay = ({hotelID}) => {
     };
     
   return (
-    <div className="my-10 sm:w-2xl sm:p-3 p-4 w-[370px]">
+    <div className="my-10 sm:w-2xl sm:p-3 p-2 w-full">
       <h1 className="text-3xl font-bold my-2">Choose your room</h1>
       {
         roomData && roomData.length > 0 && (
           roomData.map((room) => (
           <div className="border-2 my-4 rounded-lg border-gray-300 bg-slate-100" key={room._id}>
             <p className="px-4 py-1 text-white font-semibold rounded-t-lg" style={{background: "linear-gradient(to right, #2D2D2D, #BEBEBE)"}}><span className="items-center mr-2 text-yellow-300">{"★".repeat(1)}</span>SELECT CATEGORY</p>
-            <div className="flex flex-col p-2">
+            <div className="flex flex-col">
               <div className="flex justify-between p-2">
                 <div className="flex flex-col p-2 sm:gap-2 gap-0">
                   <h2 className="font-bold text-gray-500 sm:text-4xl text-2xl" style={{ fontFamily: "Faculty Glyphic, sans-serif" }}>{room.roomStandard}</h2>
@@ -124,7 +124,7 @@ const RoomDataDisplay = ({hotelID}) => {
                 <div className="flex flex-col gap-2 p-1">
                   {
                     room.imageURLs.map((image, index) => (
-                      <img src={image} alt="" key={index} className="cursor-pointer sm:w-64 w-full sm:h-40 h-32 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105" />
+                      <img src={image} alt="" key={index} className="cursor-pointer sm:w-64 w-72 sm:h-40 h-36 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105" />
                     ))
                   }
                 </div>
@@ -140,7 +140,7 @@ const RoomDataDisplay = ({hotelID}) => {
                     <p className="text-gray-500 text-sm">+ {room.pricePerNight/100} taxes & fee</p>
                   </div>
                 </div>
-                <div onClick={() => selectedRoomData(room)} className="flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg cursor-pointer w-64">
+                <div onClick={() => selectedRoomData(room)} className="flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg cursor-pointer sm:w-64 w-44">
                   <FaCheck className={`text-xl p-1 rounded-full ${selectedRoomID === room._id ? "text-white bg-green-600" : "text-black border-black border-2" }`}/>
                   <p className={`font-semibold ${selectedRoomID === room._id ? "text-green-600" : "text-gray-600"}`}>{selectedRoomID === room._id ? "Selected" : "Select"}</p>
                 </div>
