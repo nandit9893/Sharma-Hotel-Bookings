@@ -57,9 +57,9 @@ const Navbar = () => {
             <p className="text-[#777a7f] font-semibold text-xl">List your property</p>
           </button>
         </div>
-        <div className="flex sm:gap-5 gap-0">
+        <div className="flex flex-col sm:flex-row sm:gap-5 gap-1">
           <Link to="/"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 font-semibold text-xl cursor-pointer">HOME</p></Link>
-          <Link to="/about"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</p></Link>
+          <Link to="/about"><p className="text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</p></Link>
           {
             currentUser ?
             ( currentUser.role === "hotel-owner" ? 
