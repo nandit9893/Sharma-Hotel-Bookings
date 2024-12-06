@@ -58,14 +58,19 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-5 gap-1">
-          <Link to="/"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 font-semibold text-xl cursor-pointer">HOME</p></Link>
+          {
+            currentUser?.role !== "hotel-owner" ?
+            ( <Link to="/"><p className="hidden sm:inline text-slate-700 hover:underline hover:text-gray-500 font-semibold text-xl cursor-pointer">HOME</p></Link> )
+            :
+            null
+          }
           <Link to="/about"><p className="text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</p></Link>
           {
             currentUser ?
             ( currentUser.role === "hotel-owner" ? 
               ( <Link to="/hotel-details"><FaHotel className="w-8 h-8 rounded-full object-cover text-white" alt="" /></Link> )
               :
-              ( <img src={currentUser.profileImage} className="w-8 h-8 rounded-full object-cover" alt="" onClick={()=>navigate("/profile")} /> )
+              ( <img src={currentUser.profileImage} className="sm:w-8 sm:h-8 w-9 h-9 rounded-full object-cover mx-auto sm:mx-0" alt="" onClick={()=>navigate("/profile")} /> )
             )
             :
             (
