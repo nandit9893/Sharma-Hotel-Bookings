@@ -127,7 +127,7 @@ const YourHotel = () => {
               ))
             }
           </Swiper>
-          <div className="absolute sm:top-[13%] sm:right-[3%] z-10 right-10 top-20 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer sm:mt-5">
+          <div className="absolute sm:top-[13%] sm:right-[3%] z-10 right-10 top-24 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer sm:mt-5">
             <FaShare className="text-slate-500" onClick={() => {navigator.clipboard.writeText(window.location.href); setCopied(true); setTimeout(() => {setCopied(false);}, 2000);}}/>
           </div>
           {
