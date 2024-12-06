@@ -141,7 +141,7 @@ const createRoom = async (req, res) => {
         : ammenities.split(", "),
       furnished,
       pricePerNight: parseInt(pricePerNight),
-      numberOfRooms: numberOfRooms ? parseInt(numberOfRooms) : 0,
+      numberOfRooms: numberOfRooms ? parseInt(numberOfRooms) : 1,
       hasKitchen,
       hotelID,
       imageURLs,
