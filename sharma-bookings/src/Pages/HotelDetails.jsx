@@ -166,7 +166,7 @@ const HotelDetails = () => {
       <div className="flex mt-5 flex-col gap-3">
         {
           hotelID ? 
-          ( <Link to="/add-room" className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD ROOMS</Link> )
+          ( <Link to={`/add-room/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD ROOMS</Link> )
           :
           ( <Link to="/add-hotel" className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD HOTEL</Link> )
         }

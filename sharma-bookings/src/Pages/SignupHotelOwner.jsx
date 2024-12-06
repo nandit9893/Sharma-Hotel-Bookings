@@ -63,7 +63,7 @@ const SignupHotelOwner = () => {
         <input type="text" placeholder="owner name" className="border p-3 rounded-lg" id="name" name="name" value={data.name} required onChange={inputChangeHandler} />
         <input type="email" placeholder="owner email" className="border p-3 rounded-lg" id="email" name="email" value={data.email} required onChange={inputChangeHandler} />
         <input type="password" placeholder="password" className="border p-3 rounded-lg" id="password" name="password" value={data.password} required onChange={inputChangeHandler} />
-        <button disabled={loading} type="submit" className="bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80">{loading ? "SIGNINIG..." : "SIGN IN"}</button>
+        <button disabled={loading} type="submit" className="bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80">{loading ? "SIGNINIG..." : "SIGN UP"}</button>
         <OAuth state={"owner"} />
       </form>
       <div className="flex gap-2 mt-5">

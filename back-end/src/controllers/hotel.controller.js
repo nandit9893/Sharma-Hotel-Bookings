@@ -165,7 +165,6 @@ const hotelOwnerLogout = async (req, res) => {
 
 const hotelOwnerGoogleSignInSignOut = async (req, res) => {
   const { name, email } = req.body;
-  console.log(req.body);
   try {
     const existedHotelOwner = await HotelOwner.findOne({ email: email });
     if (existedHotelOwner) {

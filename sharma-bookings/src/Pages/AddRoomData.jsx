@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
+import URL from "../assets/URL.js";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const AddRoomData = () => {
+  const { hotelID } = useParams();
+  const navigate = useNavigate();
+  const [result, setResult] = useState("");
   const [data, setData] = useState({
     roomType: "",
     roomStandard: "",
@@ -58,26 +64,63 @@ const AddRoomData = () => {
     setUploading(false);
   };
 
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "imageURLs" && Array.isArray(value)) {
+        value.forEach((image) => {
+          formData.append("imageURLs", image);
+        });
+      } else if (value) {
+        formData.append(key, value);
+      }
+    });
+    if (hotelID) {
+      formData.append("hotelID", hotelID);
+    }
+    const newURL = `${URL}/sharma/resident/stays/hotel/room/create/room`;
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("accessToken");
+      const response = await axios.post(newURL, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if(response.data.success) {
+        setResult(response.data.message);
+        navigate(`/view-hotel/${hotelID}`);
+      } else if(response.data.success === false) {
+        setResult(response.data.message);
+      }
+    } catch (error) {
+      setResult(error?.response?.data?.message);
+    }
+    setLoading(false);
+  };
+  
+
   return (
     <div className="p-3 sm:px-16 px-3 w-full">
       <h1 className="text-4xl text-center font-semibold my-7" style={{ fontFamily: '"Edu AU VIC WA NT Pre", cursive' }}>ADD ROOM</h1>
-      <form className="flex justify-around mx-auto">
+      <form onSubmit={submitHandler} className="flex flex-col sm:flex-row sm:justify-around mx-auto">
         <div className="flex flex-col gap-4 p-2 max-w-2xl">
-          <div className="flex gap-5 items-center">
+          <div className="flex sm:gap-5 gap-0 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Room Standard</p>
-            <input type="text" name="roomStandard" id="roomStandard" onChange={inputChangeHandler} value={data.roomStandard} placeholder="standard, luxury, economic, etc." className="p-2 rounded-md outline-none border w-80" /> 
+            <input type="text" name="roomStandard" id="roomStandard" onChange={inputChangeHandler} value={data.roomStandard} placeholder="standard, luxury, economic, etc." className="p-2 rounded-md outline-none border sm:w-80 w-40" /> 
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex sm:gap-5 gap-0 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Ammenities</p>
-            <input type="text" name="ammenities" id="ammenities" onChange={inputChangeHandler} value={data.ammenities} placeholder="TV, AC, oven, etc." className="p-2 rounded-md outline-none border w-80" />
+            <input type="text" name="ammenities" id="ammenities" onChange={inputChangeHandler} value={data.ammenities} placeholder="TV, AC, oven, etc." className="p-2 rounded-md outline-none border sm:w-80 w-40" />
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex sm:gap-5 gap-0 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Room Size</p>
-            <input type="number" min="0" name="size" id="size" onChange={inputChangeHandler} placeholder="e.g., 24 sqm" value={data.size} className="p-2 rounded-md outline-none border w-80" />
+            <input type="number" min="0" name="size" id="size" onChange={inputChangeHandler} placeholder="e.g., 24 sqm" value={data.size} className="p-2 rounded-md outline-none border sm:w-80 w-40" />
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex sm:gap-5 gap-16 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Room Type</p>
-            <div className="flex justify-between w-80">
+            <div className="flex flex-col sm:flex-row sm:justify-between w-80">
               <div className="flex gap-1 items-center">
                 <input type="radio" className="w-6 h-4 border cursor-pointer" name="roomType" id="roomType" value="Room" onChange={inputChangeHandler} checked={data.roomType === "Room"} />
                 <span className="text-xl font-semibold">Room</span>
@@ -89,14 +132,14 @@ const AddRoomData = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="flex gap-5 items-center">
+            <div className="flex sm:gap-5 gap-0 items-center">
               <p className="font-semibold text-xl whitespace-nowrap w-44">Price per Night</p>
-              <input type="number" min="0" name="pricePerNight" id="pricePerNight" onChange={inputChangeHandler} placeholder="e.g., 24 sqm" value={data.pricePerNight} className="p-2 rounded-md outline-none border w-80" />
+              <input type="number" min="0" name="pricePerNight" id="pricePerNight" onChange={inputChangeHandler} placeholder="e.g., 24 sqm" value={data.pricePerNight} className="p-2 rounded-md outline-none border sm:w-80 w-36" />
             </div>
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex sm:gap-5 gap-0 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Bed Type</p>
-            <div className="grid grid-cols-2 gap-4 w-80">
+            <div className="grid grid-cols-2 gap-4 sm:w-80 w-full">
               <div className="flex gap-1 items-center">
                 <input type="radio" className="cursor-pointer w-6 h-4 border" value="Single" name="bedType" id="bedType" onChange={inputChangeHandler} checked={data.bedType === "Single"} />
                 <span className="text-xl font-semibold">Single</span>
@@ -115,10 +158,9 @@ const AddRoomData = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-5 justify-evenly">
+          <div className="flex flex-col sm:flex-row items-center gap-5 sm:justify-evenly">
             {
-              data.roomType === "Flat" ?
-              (
+              data.roomType === "Flat" && (
                 <div className="flex gap-2 bg-white items-center border-2 border-black rounded-lg w-48 justify-center">
                   <FaMinus className="text-xl text-red-600 px-1 cursor-pointer" onClick={() => {if (data.numberOfRooms > 1) {setData((prev)=>({...prev, numberOfRooms: prev.numberOfRooms - 1}))}}}/>
                   <hr className="w-[3px] h-[35px] bg-black"/>
@@ -127,24 +169,21 @@ const AddRoomData = () => {
                   <FaPlus className="text-xl text-green-600 px-1 cursor-pointer" onClick={()=>setData((prev)=>({...prev, numberOfRooms: prev.numberOfRooms + 1}))}/>
                 </div>
               )
-              :
-              null
             }
-            <div className="flex gap-2 items-center">
-              <input type="checkbox" className="w-6 h-4 border cursor-pointer" name="furnished" id="furnished" value="true" checked={data.furnished} onChange={inputChangeHandler}/>
-              <span className="text-xl font-semibold">Furnished</span>
+            <div className="flex gap-2 items-center justify-between sm:w-auto w-full">
+              <div className="flex gap-2 items-center">
+                <input type="checkbox" className="w-6 h-4 border cursor-pointer" name="furnished" id="furnished" value="true" checked={data.furnished} onChange={inputChangeHandler}/>
+                <span className="text-xl font-semibold">Furnished</span>
+              </div>
+              {
+                data.roomType === "Flat" && (
+                  <div className="flex gap-2 items-center">
+                    <input type="checkbox" className="w-6 h-4 border cursor-pointer" name="hasKitchen" id="hasKitchen" value="true" checked={data.hasKitchen} onChange={inputChangeHandler}/>
+                    <span className="text-xl font-semibold">Kitchen</span>
+                  </div>
+                )
+              }
             </div>
-            {
-              data.roomType === "Flat" ?
-              (
-                <div className="flex gap-2 items-center">
-                  <input type="checkbox" className="w-6 h-4 border cursor-pointer" name="hasKitchen" id="hasKitchen" value="true" checked={data.hasKitchen} onChange={inputChangeHandler}/>
-                  <span className="text-xl font-semibold">Kitchen</span>
-                </div>
-              )
-              :
-              null
-            }
           </div>
         </div>
         <div className="flex flex-col gap-2 p-2 max-w-2xl">
@@ -160,7 +199,7 @@ const AddRoomData = () => {
                 {
                   imageData.map((url, index) => (
                     <div className="relative flex gap-1" key={index}>
-                      <img src={url} alt="" className="w-44 h-36 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" />
+                      <img src={url} alt="" className="w-44 sm:h-36 h-28 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" />
                       <FaTrash className="absolute top-2 right-4 text-red-600 cursor-pointer hover:text-red-700"/>
                     </div>
                   ))
@@ -173,6 +212,12 @@ const AddRoomData = () => {
                 <p className="flex items-center font-semibold text-xl">No images uploaded yet.</p>
               </div>
             )
+          }
+           {
+            result ? 
+            ( <p className="text-green-600 text-xl text-center font-semibold">{result}</p> )
+            : 
+            ( <p className="text-red-600 text-xl text-center font-semibold">{imageUploadError ? imageUploadError : ""}</p>  )
           }
         </div>
       </form>
