@@ -21,6 +21,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const hotelOwnerRegister = async (req, res) => {
   const { name, email, password } = req.body;
+  console.log(n)
   if (!name.trim()) {
     return res.status(400).json({
       success: false,

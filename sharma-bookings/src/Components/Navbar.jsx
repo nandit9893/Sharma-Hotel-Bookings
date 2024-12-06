@@ -64,11 +64,11 @@ const Navbar = () => {
             :
             null
           }
-          <Link to="/about"><p className="text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer">ABOUT</p></Link>
+          <Link to="/about"><p className="text-slate-700 hover:underline hover:text-gray-500 transition-all 0.5s font-semibold text-xl cursor-pointer outline-none border-none">ABOUT</p></Link>
           {
             currentUser ?
             ( currentUser.role === "hotel-owner" ? 
-              ( <Link to="/hotel-details"><FaHotel className="w-8 h-8 rounded-full object-cover text-white" alt="" /></Link> )
+              ( <Link to="/hotel-details"><FaHotel className="w-8 h-8 rounded-full object-cover text-slate-600" alt="" /></Link> )
               :
               ( <img src={currentUser.profileImage} className="sm:w-8 sm:h-8 w-9 h-9 rounded-full object-cover mx-auto sm:mx-0" alt="" onClick={()=>navigate("/profile")} /> )
             )

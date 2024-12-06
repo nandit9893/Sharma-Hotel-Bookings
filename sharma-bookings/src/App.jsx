@@ -16,9 +16,10 @@ import HotelDetails from "./Pages/HotelDetails";
 import BookHotel from "./Pages/BookHotel";
 import YourHotel from "./Pages/YourHotel";
 import AddRoomData from "./Pages/AddRoomData";
-import UpdateRoom from "./Pages/UpdateRoom";
 import Search from "./Pages/Search";
 import YourBookings from "./Pages/YourBookings";
+import RoomData from "./Pages/RoomData";
+import UpdateRoomData from "./Pages/UpdateRoomData";
 
 const App = () => {
   return (
@@ -39,7 +40,8 @@ const App = () => {
           <Route path="/update-hotel/:hotelID" element={<UpdateYourHotel />} />
           <Route path="/hotel-details" element={<HotelDetails />} />
           <Route path="/add-room/:hotelID" element={<AddRoomData />} />
-          <Route path="/update-room" element={<UpdateRoom />} />          
+          <Route path="/room-data/:hotelID" element={<RoomData />} />
+          <Route path="/update-room-data/:hotelID/:roomID" element={<UpdateRoomData />} />          
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<UserProfile />} />

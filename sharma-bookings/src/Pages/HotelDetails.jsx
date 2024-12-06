@@ -171,7 +171,7 @@ const HotelDetails = () => {
           ( <Link to="/add-hotel" className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD HOTEL</Link> )
         }
         <Link to={`/update-hotel/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">UPDATE HOTEL</Link>
-        <Link to="/update-room" className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">UPDATE ROOMS</Link>        
+        <Link to={`/room-data/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ROOM's DATA</Link>        
         <Link to={`/view-hotel/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">YOUR HOTEL</Link>
       </div>
     </div>
