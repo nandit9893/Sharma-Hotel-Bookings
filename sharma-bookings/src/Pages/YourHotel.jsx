@@ -221,7 +221,7 @@ const YourHotel = () => {
             </div>
           </div>
           <RoomDataDisplay hotelID={hotelID}/>
-          <div className="my-10 sm:w-auto sm:p-0 p-3 w-[350px]">
+          <div className="my-10 sm:w-auto sm:p-0 p-3 w-[320px]">
             <h1 className="text-3xl font-bold">Near by places</h1>
             <div className="border-2 border-gray-300 max-w-1xl rounded-lg my-3 p-2 bg-slate-100">
               <div className="flex flex-1 p-2 items-center gap-5">
