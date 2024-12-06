@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaPlus, FaMinus, FaTrash } from "react-icons/fa";
 
 const AddRoomData = () => {
   const [data, setData] = useState({
@@ -26,7 +26,37 @@ const AddRoomData = () => {
       setData((prev) => ({ ...prev, [name]: checked }));
     }
   };
-  
+
+  const [imageUploadError, setImageUploadError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [imageData, setImageData] = useState([]);
+
+  const inputImageHandler = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedImages(files);
+  };  
+
+  const handleImageSubmit = (event) => {
+    event.preventDefault();
+    if(selectedImages.length === 0) {
+      setImageUploadError("Upload images");
+      setSelectedImages([]);
+      return;
+    } else if(selectedImages.length > 2) {
+      setImageUploadError("Upload less than or equal to two images");
+      setSelectedImages([]);
+      return;
+    } else {
+      setImageUploadError("");
+    }
+    setUploading(true);
+    const imagePreviews = selectedImages.map((file) => window.URL.createObjectURL(file));
+    setImageData(imagePreviews);
+    setData((prev) => ({...prev, imageURLs: selectedImages}));
+    setUploading(false);
+  };
 
   return (
     <div className="p-3 sm:px-16 px-3 w-full">
@@ -117,8 +147,33 @@ const AddRoomData = () => {
             }
           </div>
         </div>
-        <div className="flex flex-col gap-2 p-2 max-w-xl">
-          
+        <div className="flex flex-col gap-2 p-2 max-w-2xl">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+            <input className="p-2 w-full border border-green-700 rounded cursor-pointer" type="file" id="imageURLs" name="imageURLs" accept="image/*" multiple required onChange={inputImageHandler} />
+            <button disabled={uploading} onClick={handleImageSubmit} type="button" className="p-2 w-full text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-xl">{uploading ? "Uploading" : "Upload"}</button>
+          </div>
+          <button disabled={loading || uploading} type="submit" className="p-3 bg-green-700 text-white text-xl rounded-lg uppercase hover:opacity-95 disabled:opacity-80">{loading ? "ADDING" : "ADD ROOM"}</button>
+          {
+            imageData.length > 0 ?
+            (
+              <div className="grid grid-cols-2 gap-2 p-5">
+                {
+                  imageData.map((url, index) => (
+                    <div className="relative flex gap-1" key={index}>
+                      <img src={url} alt="" className="w-44 h-36 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" />
+                      <FaTrash className="absolute top-2 right-4 text-red-600 cursor-pointer hover:text-red-700"/>
+                    </div>
+                  ))
+                }
+              </div>
+            )
+            :
+            (
+              <div className="flex justify-center items-center">
+                <p className="flex items-center font-semibold text-xl">No images uploaded yet.</p>
+              </div>
+            )
+          }
         </div>
       </form>
     </div>
