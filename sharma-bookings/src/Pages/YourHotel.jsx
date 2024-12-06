@@ -221,7 +221,7 @@ const YourHotel = () => {
             </div>
           </div>
           <RoomDataDisplay hotelID={hotelID}/>
-          <div className="my-10 sm:max-w-2xl sm:p-0 p-3 w-auto">
+          <div className="my-10 sm:w-auto sm:p-0 p-3 w-[350px]">
             <h1 className="text-3xl font-bold">Near by places</h1>
             <div className="border-2 border-gray-300 max-w-1xl rounded-lg my-3 p-2 bg-slate-100">
               <div className="flex flex-1 p-2 items-center gap-5">
@@ -313,7 +313,7 @@ const YourHotel = () => {
         </div>
         {
           currentUser?.role !== "hotel-owner" || window.innerWidth >= 468 ? (
-            <div className="hidden sm:block lg:flex flex-col w-96 rounded-lg bg-white h-[550px] sticky top-5 bottom-10" style={{ boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
+            <div className="hidden sm:block lg:flex flex-col w-96 rounded-lg bg-white sm:h-[550px] h-auto sticky top-5 bottom-10" style={{ boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
               <BookingPreviewData hotelID={hotelID} />
             </div>
           ) 

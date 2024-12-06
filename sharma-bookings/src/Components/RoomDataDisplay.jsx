@@ -61,7 +61,7 @@ const RoomDataDisplay = ({hotelID}) => {
     };
     
   return (
-    <div className="my-10 sm:w-2xl sm:p-3 p-2 w-auto">
+    <div className="my-10 w-[350px] sm:w-auto p-2 sm:p-3">
       <h1 className="text-3xl font-bold my-2">Choose your room</h1>
       {
         roomData && roomData.length > 0 && (
