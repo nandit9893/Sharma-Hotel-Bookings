@@ -71,7 +71,7 @@ const RoomData = () => {
     {
       roomData && roomData.length > 0 && (
         roomData.map((room) => (
-          <div className="flex flex-col md:flex-row gap-5 my-4 mx-auto justify-between w-[45%] p-5 border-2 border-gray-400 rounded-lg bg-white" key={room._id}>
+          <div className="flex flex-col md:flex-row gap-5 my-4 mx-auto justify-between sm:w-[45%] w-auto p-5 border-2 border-gray-400 rounded-lg bg-white" key={room._id}>
             <div className="flex flex-col gap-4">
               <p className="text-4xl font-semibold text-slate-600">{room.roomStandard}</p>
               <div className="flex gap-2 items-center">
