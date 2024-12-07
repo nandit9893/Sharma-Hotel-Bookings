@@ -61,26 +61,26 @@ const YourBookings = () => {
         {
           showSpecificBooking === false && (
             <div className="flex flex-col my-2 mx-auto gap-2">
-              <div className="grid sm:grid-cols-7 grid-cols-4 w-full gap-2">
-                  <p className="text-lg sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Booking ID</p>
-                  <p className="text-lg sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Hotek Name</p>
+              <div className="grid sm:grid-cols-7 grid-cols-3 w-full gap-2">
+                  <p className="sm:text-lg text-[12px] sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Booking ID</p>
+                  <p className="sm:text-lg text-[12px] sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Hotek Name</p>
                   <p className="text-lg p-3 sm:block hidden border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Hotel Address</p>
-                  <p className="text-lg sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Total Amount</p>
-                  <p className="text-lg p-3 sm:block hidden border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Commencement Date</p>
+                  <p className="text-lg sm:block hidden sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Total Amount</p>
+                  <p className="sm:text-lg text-[12px] sm:p-3 p-1 border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Commencement Date</p>
                   <p className="text-lg p-3 sm:block hidden border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Payment Status</p>
-                  <p className="text-lg sm:p-3 p-1 sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Invoice</p>
+                  <p className="text-lg sm:p-3 p-1 sm:block hidden sm:w-auto w-full border-2 border-black bg-white text-black font-semibold rounded-lg items-center text-center">Invoice</p>
               </div>
               {
                   bookings && bookings.length > 0 && (
                       bookings.map((booking) => (
-                          <div className="grid sm:grid-cols-7 grid-cols-4 w-full gap-2" key={booking._id}>
-                              <p onClick={()=>getSpecificBooking(booking)} className="text-lg sm:p-3 p-1 sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center cursor-pointer">{booking.bookingID}</p>
-                              <p onClick={()=>navigate(`/view-hotel/${booking.hotelID}`)} className="text-lg sm:p-3 p-1 sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center cursor-pointer">{booking.hotelName}</p>
+                          <div className="grid sm:grid-cols-7 grid-cols-3 w-full gap-2" key={booking._id}>
+                              <p onClick={()=>getSpecificBooking(booking)} className="sm:text-lg text-[12px] sm:p-3 p-1 sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center cursor-pointer">{booking.bookingID}</p>
+                              <p onClick={()=>navigate(`/view-hotel/${booking.hotelID}`)} className="sm:text-lg text-[12px] sm:p-3 p-1 sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center cursor-pointer">{booking.hotelName}</p>
                               <p onClick={()=>navigate(`/view-hotel/${booking.hotelID}`)} className="text-lg p-3 sm:block hidden bg-white text-black font-semibold rounded-lg items-center text-center cursor-pointer">{booking.hotelAddress}{", "}{booking.hotelCity}</p>
-                              <p className="text-lg sm:p-3 p-1 sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center">₹ {booking.totalAmount - booking.discountAmount}</p>
-                              <p className="text-lg p-3 sm:block hidden bg-white text-black font-semibold rounded-lg items-center text-center">{booking.dateOfCommencement.slice(0, 10)} <br /><span className={`${new Date(booking.dateOfCommencement).getTime() > Date.now() ? "bg-green-700 p-1 px-3 text-white rounded-lg" : "bg-red-700 p-1 px-3 text-white rounded-lg"}`}>{new Date(booking.dateOfCommencement).getTime() > Date.now() ? "Upcoming" : "Completed"}</span></p>
+                              <p className="text-lg sm:p-3 p-1 sm:block hidden sm:w-auto w-full bg-white text-black font-semibold rounded-lg items-center text-center">₹ {booking.totalAmount - booking.discountAmount}</p>
+                              <p className="sm:text-lg text-[12px] sm:p-3 p-1 bg-white text-black font-semibold rounded-lg items-center text-center">{booking.dateOfCommencement.slice(0, 10)} <br /><span className={`${new Date(booking.dateOfCommencement).getTime() > Date.now() ? "bg-green-700 p-1 sm:px-3 px-1 text-white rounded-lg" : "bg-red-700 p-1 px-3 text-white rounded-lg"}`}>{new Date(booking.dateOfCommencement).getTime() > Date.now() ? "Upcoming" : "Completed"}</span></p>
                               <p className={`text-lg p-3 sm:block hidden ${booking.isPaymentDone ? "bg-green-700 text-white" : "bg-red-600 text-white"} font-semibold rounded-lg items-center text-center`}>{booking.isPaymentDone ? "Done" : "Pending"}</p>
-                              <a href={booking.invoicePDF} rel="noopener noreferrer" download={`Invoice_${booking.bookingID}.pdf`} target="_blank" className="text-lg sm:p-3 p-1 sm:w-auto w-full bg-white text-green-700 font-semibold rounded-lg items-center text-center">Donwload</a>
+                              <a href={booking.invoicePDF} rel="noopener noreferrer" download={`Invoice_${booking.bookingID}.pdf`} target="_blank" className="text-lg sm:block hidden sm:p-3 p-1 sm:w-auto w-full bg-white text-green-700 font-semibold rounded-lg items-center text-center">Donwload</a>
                           </div>
                       ))
                   )
@@ -139,6 +139,10 @@ const YourBookings = () => {
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Your Discount</p>
                 <span className="sm:text-2xl text-xl font-semibold text-red-500" style={{ fontFamily: "Stylish" }}>₹ {specificBookingData.discountAmount}</span>
+              </div>
+              <div className="flex justify-between">
+                <p className="sm:text-2xl text-xl font-semibold">Booking Invoice</p>
+                <a href={specificBookingData.invoicePDF} rel="noopener noreferrer" download={`Invoice_${specificBookingData.bookingID}.pdf`} target="_blank" className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>Donwload</a>
               </div>
             </div>
           )
