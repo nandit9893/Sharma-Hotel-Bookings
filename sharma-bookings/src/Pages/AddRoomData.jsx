@@ -13,7 +13,7 @@ const AddRoomData = () => {
     roomStandard: "",
     size: 0,
     bedType: "",
-    ammenities: "",
+    amenities: "",
     pricePerNight: 0,
     numberOfRooms: 1,
     hasKitchen: false,
@@ -24,7 +24,7 @@ const AddRoomData = () => {
 
   const inputChangeHandler = (event) => {
     const { name, value, checked  } = event.target;
-    if (name === "roomStandard" || name === "ammenities" || name === "size" || name === "pricePerNight") {
+    if (name === "roomStandard" || name === "amenities" || name === "size" || name === "pricePerNight") {
       setData((prev) => ({ ...prev, [name]: value }));
     } else if (name === "bedType" || name === "roomType") {
       setData((prev) => ({ ...prev, [name]: value }));
@@ -111,8 +111,8 @@ const AddRoomData = () => {
             <input type="text" name="roomStandard" id="roomStandard" onChange={inputChangeHandler} value={data.roomStandard} placeholder="standard, luxury, economic, etc." className="p-2 rounded-md outline-none border sm:w-80 w-40" /> 
           </div>
           <div className="flex sm:gap-5 gap-0 items-center">
-            <p className="font-semibold text-xl whitespace-nowrap w-44">Ammenities</p>
-            <input type="text" name="ammenities" id="ammenities" onChange={inputChangeHandler} value={data.ammenities} placeholder="TV, AC, oven, etc." className="p-2 rounded-md outline-none border sm:w-80 w-40" />
+            <p className="font-semibold text-xl whitespace-nowrap w-44">Amenities</p>
+            <input type="text" name="amenities" id="amenities" onChange={inputChangeHandler} value={data.amenities} placeholder="TV, AC, oven, etc." className="p-2 rounded-md outline-none border sm:w-80 w-40" />
           </div>
           <div className="flex sm:gap-5 gap-0 items-center">
             <p className="font-semibold text-xl whitespace-nowrap w-44">Room Size</p>

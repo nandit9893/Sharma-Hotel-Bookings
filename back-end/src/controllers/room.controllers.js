@@ -12,7 +12,7 @@ const createRoom = async (req, res) => {
     roomStandard,
     size,
     bedType,
-    ammenities,
+    amenities,
     pricePerNight,
     numberOfRooms,
     hasKitchen,
@@ -61,7 +61,7 @@ const createRoom = async (req, res) => {
       message: "Bed type must be Single, Double, Queen, King",
     });
   }
-  if (!ammenities || ammenities.length === 0) {
+  if (!amenities || ammenities.length === 0) {
     return res.status(400).json({
       success: false,
       message: "Amenities are required",
@@ -136,9 +136,9 @@ const createRoom = async (req, res) => {
       roomStandard,
       size: parseInt(size),
       bedType,
-      amenities: Array.isArray(ammenities)
-        ? ammenities
-        : ammenities.split(", "),
+      amenities: Array.isArray(amenities)
+        ? amenities
+        : amenities.split(", "),
       furnished,
       pricePerNight: parseInt(pricePerNight),
       numberOfRooms: numberOfRooms ? parseInt(numberOfRooms) : 1,
@@ -191,23 +191,33 @@ const getSearchedWithRooms = async (req, res) => {
     let query = {};
 
     if (req.query.roomType && req.query.roomType !== "all") {
-      query.roomType = req.query.roomType.charAt(0).toUpperCase() + req.query.roomType.slice(1).toLowerCase();
+      query.roomType =
+        req.query.roomType.charAt(0).toUpperCase() +
+        req.query.roomType.slice(1).toLowerCase();
     }
 
     if (req.query.bedType && req.query.bedType !== "all") {
-      query.bedType = req.query.bedType.charAt(0).toUpperCase() + req.query.bedType.slice(1).toLowerCase();
+      query.bedType =
+        req.query.bedType.charAt(0).toUpperCase() +
+        req.query.bedType.slice(1).toLowerCase();
     }
 
     if (req.query.furnished) {
-      if (req.query.furnished === undefined || req.query.furnished === "false") {
+      if (
+        req.query.furnished === undefined ||
+        req.query.furnished === "false"
+      ) {
         query.furnished = { $in: [false, true] };
-       }
+      }
     }
 
     if (req.query.hasKitchen) {
-      if (req.query.hasKitchen === undefined || req.query.hasKitchen === "false") {
+      if (
+        req.query.hasKitchen === undefined ||
+        req.query.hasKitchen === "false"
+      ) {
         query.hasKitchen = { $in: [false, true] };
-       }
+      }
     }
 
     if (req.query.pricePerNight) {
@@ -240,5 +250,61 @@ const getSearchedWithRooms = async (req, res) => {
   }
 };
 
+const getSpecifiRoomOfHotel = async (req, res) => {
+  const { hotelID, roomID } = req.params;
 
-export { createRoom, getAllHotelRooms, getSearchedWithRooms };
+  if (!hotelID) {
+    return res.status(400).json({
+      success: false,
+      message: "Hotel ID is required",
+    });
+  }
+
+  if (!roomID) {
+    return res.status(400).json({
+      success: false,
+      message: "Room ID is required",
+    });
+  }
+  try {
+    const hotelExisted = await HotelDetails.findById(hotelID);
+    if (!hotelExisted) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel with this hotel ID does not exist",
+      });
+    }
+    const roomExisted = await RoomDetails.findOne({
+      _id: roomID,
+      hotelID: hotelID,
+    });
+
+    if (!roomExisted) {
+      return res.status(404).json({
+        success: false,
+        message: "Room does not exist with this room ID",
+      });
+    }
+    const roomData = roomExisted.toObject();
+    roomData.hotelName = hotelExisted.hotelName;
+    return res.status(200).json({
+      success: true,
+      message: "Room data retrieved successfully",
+      data: roomData,
+    });
+  } catch (error) {
+    console.error("Error fetching room details:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error while fetching the room",
+      error: error.message,
+    });
+  }
+};
+
+export {
+  createRoom,
+  getAllHotelRooms,
+  getSearchedWithRooms,
+  getSpecifiRoomOfHotel,
+};

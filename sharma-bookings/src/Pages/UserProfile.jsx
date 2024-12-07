@@ -33,8 +33,7 @@ const UserProfile = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });
-  
+          });  
           if (response.data.success && response.data.data.length > 0) {
             setBookings(response.data.data);
           } else {
