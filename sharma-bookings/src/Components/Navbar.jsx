@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-blue-100 shadow-lg">
-      <div className="flex justify-between items-center max-w-8xl p-2 px-16">
+      <div className="flex justify-between items-center max-w-8xl p-2 px-5 sm:px-16">
         {
           currentUser?.role !== "hotel-owner" ?
           (
