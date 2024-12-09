@@ -49,9 +49,8 @@ const UpdateRoomData = () => {
                     numberOfRooms: response.data.data.numberOfRooms || "",
                     hasKitchen: response.data.data.hasKitchen || "",
                     furnished: response.data.data.furnished || "",
-                    imageURLs: response.data.data.imageURLs | "",
+                    imageURLs: response.data.data.imageURLs || "",
                 }));
-                console.log(response.data.data)
               } else {
                 setError(response.data.message);
               }
@@ -220,16 +219,16 @@ const UpdateRoomData = () => {
                 (
                     data && data.imageURLs.length > 0 &&
                     (
-                        <div className="grid grid-cols-2 gap-2 p-5">
-                            {
-                                data.imageURLs.map((url, index) => (
-                                    <div className="relative flex gap-1" key={index}>
-                                        <img src={url} alt="" className="w-44 sm:h-36 h-28 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" />
-                                        <FaTrash className="absolute top-2 right-4 text-red-600 cursor-pointer hover:text-red-700"/>
-                                    </div>
-                                ))
-                            }
-                        </div>
+                      <div className="grid grid-cols-2 gap-2 p-5">
+                          {
+                            data.imageURLs.map((url, index) => (
+                              <div className="relative flex gap-1" key={index}>
+                                <img src={url} alt="" className="w-44 sm:h-36 h-28 rounded-lg cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" />
+                                <FaTrash className="absolute top-2 right-4 text-red-600 cursor-pointer hover:text-red-700"/>
+                              </div>
+                            ))
+                          }
+                      </div>
                     )
                 )
               }
