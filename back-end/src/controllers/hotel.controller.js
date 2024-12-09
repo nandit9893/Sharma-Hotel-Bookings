@@ -2,6 +2,7 @@ import HotelOwner from "../models/hotelowner.models.js";
 import APIError from "../utils/APIError.js";
 import APIResponse from "../utils/APIResponse.js";
 import HotelDetails from "../models/hotelDetails.models.js"; 
+import Booking from "../models/booking.models.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -21,7 +22,6 @@ const generateAccessAndRefreshToken = async (userId) => {
 
 const hotelOwnerRegister = async (req, res) => {
   const { name, email, password } = req.body;
-  console.log(n)
   if (!name.trim()) {
     return res.status(400).json({
       success: false,
@@ -323,6 +323,35 @@ const getHotelID = async (req, res) => {
   }
 };
 
+const getAllHotelOwnerBookings = async (req, res) => {
+  const { hotelID } = req.params;
+  if(!hotelID) {
+    return res.status(400).json({
+      success: false,
+      message: "Hotel Id is required",
+    });
+  }
+  try {
+    const allBookings = await Booking.find({hotelID: hotelID});
+    if(allBookings.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No bookings for your hotel",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Bookings fetched successfully",
+      data: allBookings,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while fetching the bookings",
+      error: error.message,
+    }); 
+  }
+}; 
 
 export {
   hotelOnwerLogin,
@@ -332,4 +361,5 @@ export {
   hotelOwnerUpdateProfile,
   hotelOwnerDeleteAccount,
   getHotelID,
+  getAllHotelOwnerBookings,
 };

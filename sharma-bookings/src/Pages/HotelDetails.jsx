@@ -9,13 +9,38 @@ const HotelDetails = () => {
   const dispatch = useDispatch();
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [hotelID, setHotelID] = useState("");
-  const [roomID, setRoomID] = useState("");
   const {currentUser, loading, error} = useSelector((state) => state.user);
+  const [bookings, setBookings] = useState([]);
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    const getAllHotelBookings = async () => {
+      if (hotelID) {
+        const newURL = `${URL}/sharma/resident/stays/hotel/owner/get/all/hotel/owner/bookings/${hotelID}`;
+        try {
+          const token = localStorage.getItem("accessToken");
+          const response = await axios.get(newURL, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (response.data.success && response.data.data.length > 0) {
+            setBookings(response.data.data);
+          } else {
+            setBookings([]);
+          }
+        } catch (error) {
+        }
+      }
+    };
+  
+    getAllHotelBookings();
+  }, [hotelID]);
+  
 
   useEffect(() => {
     const initializeProfileData = () => {
@@ -166,13 +191,14 @@ const HotelDetails = () => {
       <div className="flex mt-5 flex-col gap-3">
         {
           hotelID ? 
-          ( <Link to={`/add-room/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD ROOMS</Link> )
+          ( <Link to={`/add-room/${hotelID}`} className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD ROOMS</Link> )
           :
-          ( <Link to="/add-hotel" className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD HOTEL</Link> )
+          ( <Link to="/add-hotel" className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ADD HOTEL</Link> )
         }
-        <Link to={`/update-hotel/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">UPDATE HOTEL</Link>
-        <Link to={`/room-data/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ROOM's DATA</Link>        
-        <Link to={`/view-hotel/${hotelID}`} className="bg-green-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">YOUR HOTEL</Link>
+        <Link to={`/update-hotel/${hotelID}`} className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">UPDATE HOTEL</Link>
+        <Link to={`/room-data/${hotelID}`} className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">ROOM's DATA</Link>        
+        <Link to={`/view-hotel/${hotelID}`} className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">YOUR HOTEL</Link>
+        {bookings && bookings.length > 0 && ( <Link to={`/hotel-owner-bookings/${hotelID}`} className="bg-slate-600 text-white p-3 rounded-lg text-center hover:opacity-95 w-full">NEW BOOKINGS</Link> )}
       </div>
     </div>
   );

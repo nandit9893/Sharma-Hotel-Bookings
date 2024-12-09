@@ -32,6 +32,7 @@ const SignupHotelOwner = () => {
         },
       });
       if(response.data.success) {
+        console.log(response.data.data)
         setSuccessMessage(response.data.message);
         setData({
           name: "",
@@ -46,7 +47,7 @@ const SignupHotelOwner = () => {
         setError("An error occured. Please try again");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
       if (error.response) {
         setError(error.response.data.message);
       } else {

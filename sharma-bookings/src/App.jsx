@@ -20,6 +20,7 @@ import Search from "./Pages/Search";
 import YourBookings from "./Pages/YourBookings";
 import RoomData from "./Pages/RoomData";
 import UpdateRoomData from "./Pages/UpdateRoomData";
+import HotelOwnerBookings from "./Pages/HotelOwnerBookings";
 
 const App = () => {
   return (
@@ -41,7 +42,8 @@ const App = () => {
           <Route path="/hotel-details" element={<HotelDetails />} />
           <Route path="/add-room/:hotelID" element={<AddRoomData />} />
           <Route path="/room-data/:hotelID" element={<RoomData />} />
-          <Route path="/update-room-data/:hotelID/:roomID" element={<UpdateRoomData />} />          
+          <Route path="/update-room-data/:hotelID/:roomID" element={<UpdateRoomData />} />
+          <Route path="/hotel-owner-bookings/:hotelID" element={<HotelOwnerBookings />} />          
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<UserProfile />} />

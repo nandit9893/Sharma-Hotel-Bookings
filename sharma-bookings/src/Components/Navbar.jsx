@@ -11,8 +11,6 @@ const Navbar = () => {
   const location = useLocation();
   const {currentUser} = useSelector((state) => state.user);
 
-  const hideDiv = ["/search-hotel"].includes(location.pathname);
-
   const navigationHotelOwner = () => {
     if(currentUser?.role === "hotel-owner" && localStorage.getItem("accessToken")) {
       navigate("/hotel-details");
@@ -23,7 +21,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-blue-100 shadow-lg">
-      <div className="flex justify-between items-center max-w-8xl p-2 px-5">
+      <div className="flex justify-between items-center max-w-8xl p-2 px-16">
         {
           currentUser?.role !== "hotel-owner" ?
           (
@@ -37,10 +35,10 @@ const Navbar = () => {
           :
           (
             <div className="border-none outline-none">
-              <h1 className="font-bold flex flex-col">
-                <span className="text-green-600 text-center sm:text-4xl text-2xl">SHARMA</span>
-                <span className="text-gray-700">RESIDENT STAY'S</span>
-              </h1>
+              <div className="font-bold flex flex-col">
+                <span className="text-green-600 text-center sm:text-4xl text-2xl font-bold">SHARMA</span>
+                <span className="text-gray-700 text-xl font-bold">RESIDENT STAY'S</span>
+              </div>
             </div>
           )
         }
@@ -51,12 +49,19 @@ const Navbar = () => {
             <p className="text-sm text-gray-600 font-bold">Call us to book now</p>
           </div>
         </div>
-        <div className={`hidden lg:flex items-center gap-3 ${hideDiv ? "hidden" : ""}`}>
-          <button onClick={navigationHotelOwner} className="flex items-center mt-2 p-3 bg-white rounded-lg">
-            <img src={property_logo} alt="Property logo" className="mr-2 w-8 h-8 rounded-sm" />
-            <p className="text-[#777a7f] font-semibold text-xl">List your property</p>
-          </button>
-        </div>
+        {
+          currentUser === null ?
+          (
+            <div className="hidden lg:flex items-center gap-3 border-none outline-none">
+              <button onClick={navigationHotelOwner} className="flex items-center mt-2 p-3 bg-white rounded-lg">
+                <img src={property_logo} alt="Property logo" className="mr-2 w-8 h-8 rounded-sm" />
+                <p className="text-[#777a7f] font-semibold text-xl">List your property</p>
+              </button>
+            </div>
+          )
+          :
+          null
+        }
         <div className="flex flex-col sm:flex-row sm:gap-5 gap-1">
           {
             currentUser?.role !== "hotel-owner" ?

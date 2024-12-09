@@ -91,58 +91,58 @@ const YourBookings = () => {
         {
           showSpecificBooking ? 
           (
-            <div className="flex flex-col bg-white p-4 gap-2 sm:mx-auto mx-0 sm:w-[40%] w-full border-2 border-blue-600 rounded-xl">
+            <div className="flex flex-col bg-white p-4 gap-2 sm:mx-auto mx-0 sm:w-[40%] w-full border-2 border-slate-600 rounded-xl">
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Booking ID</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.bookingID}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.bookingID}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Hotel Name</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.hotelName}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.hotelName}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Hotel Address</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500 text-right" style={{ fontFamily: "Stylish" }}>{specificBookingData.hotelAddress}, {specificBookingData.hotelCity}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500 text-right" style={{ fontFamily: "Stylish" }}>{specificBookingData.hotelAddress}, {specificBookingData.hotelCity}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Date of Booking</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.dateOfBooking.slice(0, 10)}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.dateOfBooking.slice(0, 10)}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl  font-semibold">Date of Commencement</p>
-                <span className="sm:text-2xl text-xl  font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.dateOfCommencement.slice(0, 10)}</span>
+                <span className="sm:text-2xl text-xl  font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.dateOfCommencement.slice(0, 10)}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl  font-semibold">Number of Nights</p>
-                <span className="sm:text-2xl text-xl  font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfNights}</span>
+                <span className="sm:text-2xl text-xl  font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfNights}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl  font-semibold">Number of Guests</p>
-                <span className="sm:text-2xl text-xl  font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfGuests}</span>
+                <span className="sm:text-2xl text-xl  font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfGuests}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl  font-semibold">Number of Rooms</p>
-                <span className="sm:text-2xl text-xl  font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfRooms}</span>
+                <span className="sm:text-2xl text-xl  font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.numberOfRooms}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Room / Flat Type</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.roomType}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.roomType}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Room / Flat Standard</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.roomStandard}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>{specificBookingData.roomStandard}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Total Amount</p>
-                <span className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>₹ {specificBookingData.totalAmount - specificBookingData.discountAmount}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-green-500" style={{ fontFamily: "Stylish" }}>₹ {specificBookingData.totalAmount - specificBookingData.discountAmount}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Your Discount</p>
-                <span className="sm:text-2xl text-xl font-semibold text-red-500" style={{ fontFamily: "Stylish" }}>₹ {specificBookingData.discountAmount}</span>
+                <span className="sm:text-2xl text-xl font-semibold text-red-500" style={{ fontFamily: "Stylish" }}>- ₹ {specificBookingData.discountAmount}</span>
               </div>
               <div className="flex justify-between">
                 <p className="sm:text-2xl text-xl font-semibold">Booking Invoice</p>
-                <a href={specificBookingData.invoicePDF} rel="noopener noreferrer" download={`Invoice_${specificBookingData.bookingID}.pdf`} target="_blank" className="sm:text-2xl text-xl font-semibold text-blue-500" style={{ fontFamily: "Stylish" }}>Donwload</a>
+                <a href={specificBookingData.invoicePDF} rel="noopener noreferrer" download={`Invoice_${specificBookingData.bookingID}.pdf`} target="_blank" className="sm:text-2xl text-xl font-semibold text-green-500 underline" style={{ fontFamily: "Stylish" }}>Donwload</a>
               </div>
             </div>
           )
