@@ -57,3 +57,15 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply bg-white font-bold rounded-full flex justify-center items-center shadow-md p-10 transition-transform duration-300;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    @apply p-7; 
+  }
+}
