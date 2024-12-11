@@ -204,7 +204,7 @@ const Home = () => {
           <span className="absolute left-48 top-56 sm:left-auto sm:top-64 sm:right-20 sm:text-3xl font-bold text-white">off</span>
         </div>
       </div>
-      <div className="mx-auto w-full sm:flex sm:justify-between border-2 border-gray-300 max-w-max p-3 rounded-md">
+      <div className="mx-auto w-full sm:flex sm:justify-between sm:border-2 border-gray-300 max-w-max p-3 rounded-md">
         <div className="p-2">
           <img src={sleep} className="sm:w-60 w-full h-60 rounded-md" alt="" />
         </div>
