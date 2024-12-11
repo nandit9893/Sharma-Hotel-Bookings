@@ -8,7 +8,7 @@ import URL from "../assets/URL.js";
 import "react-calendar/dist/Calendar.css";
 
 const BookingPreviewData = ({ hotelID }) => {
-  const { selectedRoom } = useSelector((state) => state.user);
+  const { selectedRoom, currentUser } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [hotelData, setHotelData] = useState(null);
@@ -62,8 +62,17 @@ const BookingPreviewData = ({ hotelID }) => {
   return (
     <div className="flex flex-col gap-3 relative overflow-visible">
       <div className="flex justify-between px-5 py-2 rounded-t-lg" style={{ background: "linear-gradient(to right, red, white)" }}>
-        <p className="text-white font-semibold text-lg">Login now to book hotel</p>
-        <Link to="/login-user" className="bg-red-600 px-3 py-1 text-white font-semibold text-xl opacity-75 rounded-md">Login</Link>
+        {
+          currentUser === null ? 
+          (
+            <>
+              <p className="text-white font-semibold text-lg">Login now to book hotel</p>
+              <Link to="/login-user" className="bg-red-600 px-3 py-1 text-white font-semibold text-xl opacity-75 rounded-md">Login</Link> 
+            </>
+          )
+          :
+          null
+        }
       </div>
       <div className="flex justify-start p-5 gap-5">
         <div className="flex flex-col">
