@@ -114,9 +114,9 @@ const BookingPreviewData = ({ hotelID }) => {
           )
         }
       </div>
-      <div className="px-5">
+      {/* <div className="px-5">
         <p className="bg-green-600 rounded-lg p-3 text-white font-semibold text-2xl text-center">Continue to Book</p>
-      </div>
+      </div> */}
     </div>
   );
 };
