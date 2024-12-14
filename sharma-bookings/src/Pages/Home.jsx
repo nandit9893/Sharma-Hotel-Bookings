@@ -154,7 +154,7 @@ const Home = () => {
           </div>
         </div>
         {
-          borderPreview ? ( <p className="mx-96 bg-white py-1 text-red-600 px-3 my-1 w-64">Please selet the places or hotels</p> ) : null
+          borderPreview ? ( <p className="bg-white text-red-600 py-1 px-3 my-1 w-64 mx-auto lg:mx-96 lg:static absolute top-[350px] left-8">Please select the places or hotels</p>) : null
         }
         {
           placesPreview && allPlacesMergerd && allPlacesMergerd.length > 0 && 
