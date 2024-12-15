@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 
 const About = () => {
   return (
@@ -48,7 +48,7 @@ const About = () => {
         <div className="flex flex-col">
            <div className="flex items-start gap-3">
             <span className="text-xl font-normal">&bull;</span>
-            <p className="text-xl font-normal leading-relaxed">I have recently graduated from <span className="text-xl text-green-700">Bundelkhand University, Jhansi</span> in <span className="text-xl text-green-700">Electronics and communcation enginnering.</span>{" "}Although, my branch is Electronics but I devloped my skills in the field of <span className="text-xl text-blue-700">Information Technology</span>.</p>
+            <p className="text-xl font-normal leading-relaxed">I have recently graduated from <span className="text-xl text-green-700">Bundelkhand University, Jhansi</span> in <span className="text-xl text-green-700">Electronics and communcation enginnering.</span>{" "}Although, my branch is Electronics but I developed my skills in the field of <span className="text-xl text-blue-700">Information Technology</span>.</p>
           </div>
           <div className="flex items-start gap-3">
             <span className="text-xl font-normal">&bull;</span>
