@@ -1,7 +1,7 @@
 import HotelDetails from "../models/hotelDetails.models.js";
 import HotelOwner from "../models/hotelowner.models.js";
 import RoomDetails from "../models/roomdetails.models.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { deleteFromCloudinary, uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const roomTypeData = ["Flat", "Room"];
 const bedTypeData = ["Single", "Double", "Queen", "King"];
@@ -61,7 +61,7 @@ const createRoom = async (req, res) => {
       message: "Bed type must be Single, Double, Queen, King",
     });
   }
-  if (!amenities || ammenities.length === 0) {
+  if (!amenities || amenities.length === 0) {
     return res.status(400).json({
       success: false,
       message: "Amenities are required",
@@ -136,9 +136,7 @@ const createRoom = async (req, res) => {
       roomStandard,
       size: parseInt(size),
       bedType,
-      amenities: Array.isArray(amenities)
-        ? amenities
-        : amenities.split(", "),
+      amenities: Array.isArray(amenities) ? amenities : amenities.split(", "),
       furnished,
       pricePerNight: parseInt(pricePerNight),
       numberOfRooms: numberOfRooms ? parseInt(numberOfRooms) : 1,
@@ -302,9 +300,164 @@ const getSpecifiRoomOfHotel = async (req, res) => {
   }
 };
 
+const updateRoomData = async (req, res) => {
+  const { roomID, hotelID } = req.params;
+  const {
+    roomType,
+    roomStandard,
+    size,
+    bedType,
+    amenities,
+    pricePerNight,
+    numberOfRooms,
+    hasKitchen,
+  } = req.body;
+  let { furnished } = req.body;
+  console.log("Incoming Request Params:", req.params);
+  console.log("Incoming Request Body:", req.body);
+  console.log("Incoming Request Files:", req.files);
+  
+  if (!hotelID) {
+    return res.status(400).json({
+      success: false,
+      message: "Hotel ID is required",
+    });
+  }
+  if (!roomID) {
+    return res.status(400).json({
+      success: false,
+      message: "Room ID is required",
+    });
+  }
+
+  try {
+    const hotelExisted = await HotelDetails.findById(hotelID);
+    if (!hotelExisted) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel with this hotel ID does not exist",
+      });
+    }
+    const roomExisted = await RoomDetails.findOne({
+      _id: roomID,
+      hotelID: hotelID,
+    });
+
+    if (!roomExisted) {
+      return res.status(404).json({
+        success: false,
+        message: "Room does not exist with this room ID",
+      });
+    }
+
+    let imageURLs = [...roomExisted.imageURLs];
+    try {
+      if (req.files &&  Array.isArray(req.files) &&  req.files.length > 0 &&  req.files.length < 3) {
+        for (const url of roomExisted.imageURLs) {
+          await deleteFromCloudinary(url);
+        }
+        const uploadPromises = req.files.map((file) =>
+          uploadOnCloudinary(file.path)
+        );
+        const uploadResults = await Promise.all(uploadPromises);
+        imageURLs = uploadResults.map((result) => result.secure_url || result.url).filter(Boolean);
+      }
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "An error occurred while uploading images",
+        error: error.message,
+      });
+    }
+
+    if (roomType) {
+      if (!roomTypeData.includes(roomType)) {
+        return res.status(400).json({
+          success: false,
+          message: "Room type must be flat or room",
+        });
+      } else {
+        roomExisted.roomType = roomType;
+      }
+    }
+
+    if (roomStandard) roomExisted.roomStandard = roomStandard;
+    if (size) roomExisted.size = parseInt(size);
+    if (bedType) {
+      if (!bedTypeData.includes(bedType)) {
+        return res.status(400).json({
+          success: false,
+          message: "Bed type must be Single, Double, Queen, or King",
+        });
+      } else {
+        roomExisted.bedType = bedType;
+      }
+    }
+    if (amenities && amenities.length > 0) {
+      roomExisted.amenities = [];
+      roomExisted.amenities = Array.isArray(amenities) ? amenities : amenities.split(", ");
+    }
+    if (pricePerNight) roomExisted.pricePerNight = Number(pricePerNight);
+
+    if (furnished) {
+      if (typeof furnished !== "boolean") {
+        furnished = furnished === "true";
+        if (furnished !== true && furnished !== false) {
+          return res.status(400).json({
+            success: false,
+            message: "Furnished status is invalid",
+          });
+        }
+      }
+    }
+
+    if (roomType === "Flat") {
+      if (!numberOfRooms?.trim()) {
+        return res.status(400).json({
+          success: false,
+          message: "Number of rooms is required when room type is flat",
+        });
+      } else {
+        roomExisted.numberOfRooms = parseInt(numberOfRooms);
+      }
+
+      if (hasKitchen === undefined || hasKitchen === null) {
+        return res.status(400).json({
+          success: false,
+          message: "Kitchen information is required when room type is flat",
+        });
+      } else if (typeof hasKitchen !== "boolean") {
+        hasKitchen = hasKitchen === "true";
+        if (hasKitchen !== true) {
+          return res.status(400).json({
+            success: false,
+            message: "Kitchen must be true when room type is flat",
+          });
+        }
+      }
+      roomExisted.hasKitchen = hasKitchen;
+    }
+
+    roomExisted.imageURLs = imageURLs;
+    await roomExisted.save();
+    return res.status(200).json({
+      success: true,
+      message: "Room updated successfully",
+      data: roomExisted,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while updating room data",
+      error: error.message,
+    });
+  }
+};
+
 export {
   createRoom,
   getAllHotelRooms,
   getSearchedWithRooms,
   getSpecifiRoomOfHotel,
+  updateRoomData,
 };

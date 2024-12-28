@@ -4,10 +4,11 @@ import { FaCheck, FaBed, FaSpa  } from "react-icons/fa";
 import { MdApartment, MdMeetingRoom, MdTv, MdOutlineChair, MdKitchen } from "react-icons/md";
 import { IoWifi, IoSnowOutline } from "react-icons/io5";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectRoom } from "../Redux/User/UserSlice.js";
 
 const RoomDataDisplay = ({hotelID}) => {
+    const { currentUser } = useSelector((state) => state.user);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [roomData, setRoomData] = useState([]);
@@ -16,30 +17,30 @@ const RoomDataDisplay = ({hotelID}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const getRoomData = async () => {
-          const newURL = `${URL}/sharma/resident/stays/hotel/room/get/all/rooms/${hotelID}`;
-          try {
-            setLoading(true);
-            const response = await axios.get(newURL);
-            if(response.data.success) {
-              setRoomData(response.data.data);
-              setError(false);
-            } else if(response.data.success === false && response.data.statusCode === 404) {
-              setError(true);
-            }
-          } catch (error) {
+      const getRoomData = async () => {
+        const newURL = `${URL}/sharma/resident/stays/hotel/room/get/all/rooms/${hotelID}`;
+        try {
+          setLoading(true);
+          const response = await axios.get(newURL);
+          if(response.data.success) {
+            setRoomData(response.data.data);
+            setError(false);
+          } else if(response.data.success === false && response.data.statusCode === 404) {
             setError(true);
-          } finally {
-            setLoading(false);
           }
-        };
-        getRoomData();
-      }, [hotelID]);
+        } catch (error) {
+          setError(true);
+        } finally {
+          setLoading(false);
+        }
+      };
+      getRoomData();
+    }, [hotelID]);
 
-      useEffect(()=> {
-        setSelectedRoom(null);
-        dispatch(selectRoom(null)); 
-      }, []);
+    useEffect(()=> {
+      setSelectedRoom(null);
+      dispatch(selectRoom(null)); 
+    }, []);
 
     const amenityIcons = {
         "Free WiFi": <IoWifi className="text-xl text-green-700 font-bold" />,
@@ -140,7 +141,7 @@ const RoomDataDisplay = ({hotelID}) => {
                     <p className="text-gray-500 text-sm">+ {room.pricePerNight/100} taxes & fee</p>
                   </div>
                 </div>
-                <div onClick={() => selectedRoomData(room)} className="flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg cursor-pointer sm:w-64 w-44">
+                <div onClick={currentUser.role !== "hotel-owner" ? () => selectedRoomData(room) : null} className={`flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg sm:w-64 w-44 ${ currentUser.role === "hotel-owner" ? "cursor-not-allowed opacity-50" : "cursor-pointer opacity-100"}`}>
                   <FaCheck className={`text-xl p-1 rounded-full ${selectedRoomID === room._id ? "text-white bg-green-600" : "text-black border-black border-2" }`}/>
                   <p className={`font-semibold ${selectedRoomID === room._id ? "text-green-600" : "text-gray-600"}`}>{selectedRoomID === room._id ? "Selected" : "Select"}</p>
                 </div>
