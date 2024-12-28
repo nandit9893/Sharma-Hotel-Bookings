@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 
+console.log(import.meta.env.VITE_FIREBASE_API_KEY)
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAr8txtlsOJLBRcVU9XubMA-YvQ1Tg944A",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "sharma-resident-stay-s-640e5.firebaseapp.com",
   projectId: "sharma-resident-stay-s-640e5",
   storageBucket: "sharma-resident-stay-s-640e5.firebasestorage.app",
