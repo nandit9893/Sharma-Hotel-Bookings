@@ -184,6 +184,7 @@ const BookHotel = () => {
         setDisableSend(true);
       }
     } catch (error) {
+      console.log(error)
       setEmailSent(false);
       setDisableSend(false);
     } finally {

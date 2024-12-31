@@ -5,6 +5,7 @@ import verification_Booking_OTP_Template from "../utils/SendOTPTemplate.js";
 
 const sendVerificationToEmailAndPhone = async (req, res) => {
   const { customerEmail, customerName, customerPhoneNumber } = req.body;
+  console.log(req.body)
 
   if (!customerEmail || !customerName.trim() || !customerPhoneNumber.trim()) {
     return res.status(400).json({
@@ -48,11 +49,11 @@ const sendVerificationToEmailAndPhone = async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    await client.messages.create({
-      body: `Hello ${customerName},\n\nYour booking has been initiated. This is the OTP for verification, valid for 30 seconds only:\n\n${verificationCode}\n\nPlease verify to proceed further.`,
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: customerPhoneNumber,
-    });
+    // await client.messages.create({
+    //   body: `Hello ${customerName},\n\nYour booking has been initiated. This is the OTP for verification, valid for 30 seconds only:\n\n${verificationCode}\n\nPlease verify to proceed further.`,
+    //   from: process.env.TWILIO_PHONE_NUMBER,
+    //   to: customerPhoneNumber,
+    // });
 
     return res.status(200).json({
       success: true,
