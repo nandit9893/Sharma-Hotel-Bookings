@@ -132,7 +132,7 @@ const Home = () => {
           <p className="text-white text-lg font-bold sm:text-3xl">Over 174,000+ hotels and homes across 35+ countries</p>
         </div>
         <div className="flex flex-col lg:flex-row justify-center sm:flex-row items-center sm:gap-0 gap-4">
-          <div className={`flex justify-evenly sm:rounded-none rounded-md sm:gap-4 gap-0 sm:p-4 p-2 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-2 rounded-l-md"} bg-white px-3 sm:w-80 w-64`}>
+          <div className={`flex justify-evenly sm:rounded-none rounded-md sm:gap-4 gap-0 sm:p-4 p-2 items-center ${borderPreview ? "border-[1px] border-red-600 rounded-l-md zigzag-animation shadow-[0_0_0_1px_#f00]" : "border-r-[2px]"} bg-white px-3 sm:w-80 w-64`}>
             <MdLocationOn className="text-2xl sm:block hidden" />
             <input type="text" className="text-xl text-black outline-none bg-white w-full"  placeholder="Search hotels, cities" name="searchTerm" value={searchTerm} onChange={inputChangeHandler}/>
           </div>
