@@ -312,7 +312,7 @@ const YourHotel = () => {
           </div>
         </div>
         {
-          currentUser?.role !== "hotel-owner" && window.innerWidth >= 468 ? (
+          window.innerWidth >= 468 ? (
             <div className="hidden sm:block lg:flex flex-col w-96 rounded-lg bg-white sm:h-[550px] h-auto sticky top-5 bottom-10" style={{ boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.1), 0px -3px 5px rgba(0, 0, 0, 0.1), 3px 0px 5px rgba(0, 0, 0, 0.1), -3px 0px 5px rgba(0, 0, 0, 0.1)"}}>
               <BookingPreviewData hotelID={hotelID} />
             </div>
