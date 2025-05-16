@@ -9,6 +9,7 @@ import { selectRoom } from "../Redux/User/UserSlice.js";
 
 const RoomDataDisplay = ({hotelID}) => {
     const { currentUser } = useSelector((state) => state.user);
+    console.log(currentUser.role)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [roomData, setRoomData] = useState([]);
@@ -141,7 +142,7 @@ const RoomDataDisplay = ({hotelID}) => {
                     <p className="text-gray-500 text-sm">+ {room.pricePerNight/100} taxes & fee</p>
                   </div>
                 </div>
-                <div onClick={currentUser.role !== "hotel-owner" ? () => selectedRoomData(room) : null} className={`flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg sm:w-64 w-44 ${ currentUser.role === "hotel-owner" ? "cursor-not-allowed opacity-50" : "cursor-pointer opacity-100"}`}>
+                <div onClick={currentUser?.role !== "hotel-owner" ? () => selectedRoomData(room) : null} className={`flex gap-5 items-center px-3 sm:px-10 border-[1px] border-gray-500 rounded-lg sm:w-64 w-44 ${ currentUser.role === "hotel-owner" ? "cursor-not-allowed opacity-50" : "cursor-pointer opacity-100"}`}>
                   <FaCheck className={`text-xl p-1 rounded-full ${selectedRoomID === room._id ? "text-white bg-green-600" : "text-black border-black border-2" }`}/>
                   <p className={`font-semibold ${selectedRoomID === room._id ? "text-green-600" : "text-gray-600"}`}>{selectedRoomID === room._id ? "Selected" : "Select"}</p>
                 </div>
